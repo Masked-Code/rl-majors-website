@@ -1,0 +1,21 @@
+<template>
+  <UCard class="rounded-3xl m-[5%]">
+  <div class="flex flex-row place-content-center">
+      <div class="mr-[5%]">
+          Created by Masked with ❤️
+      </div>
+      <div>
+          2024 - All Rights Reserved
+      </div>
+  </div>
+  </UCard>
+</template>
+
+
+<script lang="ts" setup>
+
+</script>
+
+<style>
+
+</style>
