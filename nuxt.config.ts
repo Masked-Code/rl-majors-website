@@ -4,5 +4,13 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: 'page', mode: 'out-in' }
   },
-  modules: ["@nuxt/ui", '@nuxtjs/color-mode', 'nuxt-icon']
+  supabase: {
+    redirectOptions: {
+      login: '/login',
+      callback: '/confirm',
+      exclude: ['/', '/gettingstarted', '/leaderboards', '/updates'],
+      cookieRedirect: false,
+    }
+  },
+  modules: ["@nuxt/ui", '@nuxtjs/color-mode', 'nuxt-icon', '@nuxtjs/supabase']
 })
