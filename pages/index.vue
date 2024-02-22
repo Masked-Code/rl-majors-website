@@ -5,6 +5,10 @@
       <h1 class="text-5xl m-2"> Welcome To <b class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-500">RL Majors</b> 👋</h1>
       <p class="text-2xl m-2">Join the Discord and start competing!</p>
       <div class="flex flex-row m-3">
+        <div class="m-5">
+        <h2>"RL Majors part of my life"</h2>
+        <h3>- bozo</h3>
+        </div>
           <iframe src="https://discord.com/widget?id=1047297400416514068&theme=dark" width="350" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" class="rounded-2xl"></iframe>
       </div>
     </div>
