@@ -12,7 +12,17 @@
 useHead({
   title: 'RL Majors',
   meta: [
-    { name: 'description', content: 'Official RL Majors Community Website' }
+    { name: 'description', content: 'Official RL Majors Community Website' },
+    { name: 'og:description', content: 'Official RL Majors Community Website' },
+    { name: 'og:image', content: 'https://i.imgur.com/yMG9eTu.png'},
+    { name: 'og:title', content: 'RL Majors'},
+    { name: 'og:url', content: 'https://www.rl-majors.com'},
+    { name: 'lang', content: 'English'},
+    { name: 'icon', content: 'https://i.imgur.com/yMG9eTu.png'},
+    { name: 'twitter:title', content: 'RL Majors'},
+    { name: 'twitter:description', content: 'Official RL Majors Community Website'},
+    { name: 'twitter:image', content: 'https://i.imgur.com/yMG9eTu.png'},
+    { name: 'twitter:card', content: 'summary'},
   ],
 })
 </script>
