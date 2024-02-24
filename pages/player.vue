@@ -67,10 +67,20 @@
         </div>
       </UCard>
     </div>
+    <div class="flex flex-row">
+      <div class="w-[33%]">
+        <PlaytylePieChart />
+      </div>
+      <div class="w-[63%]">
+        <TeamRankingLineChart />
+      </div>
+    </div>
   </UCard>
 </template>
 
 <script setup>
+import PlaytylePieChart from '~/components/PlaystylePieChart.vue'
+import TeamRankingLineChart from '~/components/TeamRankingLineChart.vue'
 const user = useSupabaseUser()
 let division = 1
 let price = 300
