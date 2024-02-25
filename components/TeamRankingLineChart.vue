@@ -22,13 +22,20 @@ export default {
       datasets: [
         {
           label: 'Reno Rats',
-          backgroundColor: '#ffffff',
-          data: [4, 3, 1, 4, 3, 8, 4]
+          backgroundColor: 'rgba(0, 0, 0, 1)',
+          data: [4, 3, 1, 4, 3, 8, 4],
+          tension: 0.25,
+          borderColor: 'rgb(75, 192, 192)',
         }
       ]
       },
       chartOptions: {
-        responsive: true
+        responsive: true,
+        scales: {
+          y: {
+            reverse: true
+          }
+        }
       }
     }
   }
