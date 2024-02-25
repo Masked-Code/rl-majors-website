@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/login',
       callback: '/confirm',
-      exclude: ['/', '/gettingstarted', '/leaderboards', '/updates'],
+      exclude: ['/', '/gettingstarted', '/leaderboards', '/updates', '/teams/*'],
       cookieRedirect: false,
     }
   },
