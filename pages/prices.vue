@@ -1,15 +1,41 @@
 <template>
   <UCard class="rounded-2xl ml-[10%] mr-[10%] min-h-96">
-  {{ playerPrices }}
+    <UDropdown :items="divisions" :popper="{ placement: 'bottom-start' }">
+      <UButton color="primary" :label="currentSelectedDivision" trailing-icon="i-heroicons-chevron-down-20-solid" class="m-1" size="md" />
+    </UDropdown>
+    <div class="flex flex-col place-items-center">
+      <UTable :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="playerPrices" class="w-full" />
+    </div>
   </UCard>
 </template>
 
 <script lang="ts" setup>
+let currentSelectedDivison = 'Div 1'
 const client = useSupabaseClient()
 
 const { data: playerPrices, error } = await client
   .from('S1_D1_Prices')
   .select('')
+
+
+const divisions = [
+  [{
+    label: 'Div 1',
+    click: () => {
+      currentSelectedDivison = 'Div 1'
+    }
+  }, {
+    label: 'Div 2',
+    click: () => {
+      currentSelectedDivison = 'Div 2'
+    }
+  }, {
+    label: 'Div 3',
+    click: () => {
+      currentSelectedDivison = 'Div 3'
+    }
+  }]
+]
 </script>
 
 <style>
