@@ -2,19 +2,19 @@
   <UCard class="rounded-2xl ml-[10%] mr-[10%] min-h-96">
     <UDropdown :items="divisions" :popper="{ placement: 'bottom-start' }">
       <UButton color="primary" :label="currentSelectedDivision" trailing-icon="i-heroicons-chevron-down-20-solid" class="m-1" size="md" >
-        {{ currentSelectedDivison }}
+        {{ currentSelectedDivision }}
       </UButton>
     </UDropdown>
     <div class="flex flex-col place-items-center">
-      <UTable v-if="currentSelectedDivision='Div 1'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d1PlayerPrices" :columns="columns" class="w-full" />
-      <UTable v-if="currentSelectedDivision='Div 2'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d2PlayerPrices" :columns="columns" class="w-full" />
-      <UTable v-if="currentSelectedDivision='Div 3'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d3PlayerPrices" :columns="columns" class="w-full" />
+      <UTable v-if="currentSelectedDivision == 'Div 1'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d1PlayerPrices" :columns="columns" class="w-full" />
+      <UTable v-if="currentSelectedDivision == 'Div 2'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d2PlayerPrices" :columns="columns" class="w-full" />
+      <UTable v-if="currentSelectedDivision == 'Div 3'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d3PlayerPrices" :columns="columns" class="w-full" />
     </div>
   </UCard>
 </template>
 
 <script lang="ts" setup>
-let currentSelectedDivison = 'Div 1'
+let currentSelectedDivision = 'Div 1'
 const client = useSupabaseClient()
 
 const { data: d1PlayerPrices, error } = await client
@@ -47,17 +47,17 @@ const divisions = [
   [{
     label: 'Div 1',
     click: () => {
-      currentSelectedDivison = 'Div 1'
+      currentSelectedDivision = 'Div 1'
     }
   }, {
     label: 'Div 2',
     click: () => {
-      currentSelectedDivison = 'Div 2'
+      currentSelectedDivision = 'Div 2'
     }
   }, {
     label: 'Div 3',
     click: () => {
-      currentSelectedDivison = 'Div 3'
+      currentSelectedDivision = 'Div 3'
     }
   }]
 ]
