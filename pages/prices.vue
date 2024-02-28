@@ -6,7 +6,9 @@
       </UButton>
     </UDropdown>
     <div class="flex flex-col place-items-center">
-      <UTable :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="playerPrices" :columns="columns" class="w-full" />
+      <UTable v-if="currentSelectedDivision='Div 1'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d1PlayerPrices" :columns="columns" class="w-full" />
+      <UTable v-if="currentSelectedDivision='Div 2'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d2PlayerPrices" :columns="columns" class="w-full" />
+      <UTable v-if="currentSelectedDivision='Div 3'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d3PlayerPrices" :columns="columns" class="w-full" />
     </div>
   </UCard>
 </template>
@@ -15,11 +17,21 @@
 let currentSelectedDivison = 'Div 1'
 const client = useSupabaseClient()
 
-const { data: playerPrices, error } = await client
+const { data: d1PlayerPrices, error } = await client
   .from('S1_D1_Prices')
   .select('')
   .order('price', { ascending: false })
 
+const { data: d2PlayerPrices, error } = await client
+.from('S1_D2_Prices')
+.select('')
+.order('price', { ascending: false })
+  
+const { data: d3PlayerPrices, error } = await client
+.from('S1_D3_Prices')
+.select('')
+.order('price', { ascending: false })
+  
 const columns = [{
   key: 'discord_id',
   label: 'Discord Username'
