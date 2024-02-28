@@ -1,7 +1,7 @@
 <template>
   <UCard class="rounded-2xl ml-[10%] mr-[10%] min-h-96">
     <UDropdown :items="divisions" :popper="{ placement: 'bottom-start' }">
-      <UButton color="primary" :label="currentSelectedDivision" trailing-icon="i-heroicons-chevron-down-20-solid" class="m-1" size="md" >
+      <UButton color="primary" trailing-icon="i-heroicons-chevron-down-20-solid" class="m-1" size="md" >
         {{ currentSelectedDivision }}
       </UButton>
     </UDropdown>
@@ -14,20 +14,20 @@
 </template>
 
 <script lang="ts" setup>
-let currentSelectedDivision = 'Div 1'
+let currentSelectedDivision = ref('Div 1')
 const client = useSupabaseClient()
 
-const { data: d1PlayerPrices, error } = await client
+const { data: d1PlayerPrices } = await client
   .from('S1_D1_Prices')
   .select('')
   .order('price', { ascending: false })
 
-const { data: d2PlayerPrices, error } = await client
+const { data: d2PlayerPrices } = await client
 .from('S1_D2_Prices')
 .select('')
 .order('price', { ascending: false })
   
-const { data: d3PlayerPrices, error } = await client
+const { data: d3PlayerPrices } = await client
 .from('S1_D3_Prices')
 .select('')
 .order('price', { ascending: false })
@@ -47,17 +47,17 @@ const divisions = [
   [{
     label: 'Div 1',
     click: () => {
-      currentSelectedDivision = 'Div 1'
+      currentSelectedDivision.value = 'Div 1'
     }
   }, {
     label: 'Div 2',
     click: () => {
-      currentSelectedDivision = 'Div 2'
+      currentSelectedDivision.value = 'Div 2'
     }
   }, {
     label: 'Div 3',
     click: () => {
-      currentSelectedDivision = 'Div 3'
+      currentSelectedDivision.value = 'Div 3'
     }
   }]
 ]
