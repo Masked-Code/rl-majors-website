@@ -1,10 +1,12 @@
 <template>
   <UCard class="rounded-2xl ml-[10%] mr-[10%] min-h-96">
     <UDropdown :items="divisions" :popper="{ placement: 'bottom-start' }">
-      <UButton color="primary" :label="currentSelectedDivision" trailing-icon="i-heroicons-chevron-down-20-solid" class="m-1" size="md" />
+      <UButton color="primary" :label="currentSelectedDivision" trailing-icon="i-heroicons-chevron-down-20-solid" class="m-1" size="md" >
+        {{ currentSelectedDivison }}
+      </UButton>
     </UDropdown>
     <div class="flex flex-col place-items-center">
-      <UTable :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="playerPrices" class="w-full" />
+      <UTable :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="playerPrices" :columns="columns" class="w-full" />
     </div>
   </UCard>
 </template>
@@ -18,6 +20,16 @@ const { data: playerPrices, error } = await client
   .select('')
   .order('price', { ascending: false })
 
+const columns = [{
+  key: 'discord_id',
+  label: 'Discord Username'
+}, {
+  key: 'rl_id',
+  label: 'Rocket League ID'
+}, {
+  key: 'price',
+  label: 'Price'
+}]
 
 const divisions = [
   [{
