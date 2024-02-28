@@ -16,6 +16,7 @@ const client = useSupabaseClient()
 const { data: playerPrices, error } = await client
   .from('S1_D1_Prices')
   .select('')
+  .order('price')
 
 
 const divisions = [
