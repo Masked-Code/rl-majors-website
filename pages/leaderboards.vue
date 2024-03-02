@@ -67,7 +67,7 @@ const teams = [{
   name: 'Morgantown Monsters',
   'Franchise Owner': 'BuzzNutly',
   'Team Captain': 'Not Chosen',
-  'Goal Difference': '-9'
+  'Goal Difference': '+69'
 }]
 
 const selectedTeam = ref([teams[1]])
