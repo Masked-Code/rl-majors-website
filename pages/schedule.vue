@@ -7,12 +7,9 @@
           {{ currentSelectedDivision }}
         </UButton>
       </UDropdown>
-      <UButton  color="primary" class="m-2" size="md" @click="selectedSeasonType='Regular'">
-        Regular Season
-      </UButton>
-      <UButton  color="primary" class="m-2" size="md" @click="selectedSeasonType='Playoffs'">
-        Playoffs
-      </UButton>
+      <div>
+        <UTabs :items="seasonTypes" :default-index="0" @change="onChange" class="m-1"/>
+      </div>
     </div>
     <div class="flex flex-col place-items-center min-h-3">
       <iframe v-if="selectedSeasonType == 'Regular' && currentSelectedDivision == 'Div 1'" src="https://brackethq.com/b/ttmxb/embed/" width="100%" height="1250" frameborder="0" class="rounded-2xl"></iframe>
@@ -46,6 +43,28 @@ const divisions = [
     }
   }]
 ]
+
+const seasonTypes = [{
+  label: 'Regular Season',
+  click: () => {
+    selectedSeasonType.value = 'Regular'
+  }
+}, {
+  label: 'Playoffs',
+  click: () => {
+    selectedSeasonType.value = 'Playoffs'
+  }
+}]
+
+function onChange (index: any) {
+  const item = seasonTypes[index]
+
+  if (item.label == 'Regular Season') {
+    selectedSeasonType.value = 'Regular'
+  } else {
+    selectedSeasonType.value = 'Playoffs'
+  }
+}
 </script>
 
 <style>
