@@ -9,6 +9,7 @@
                 <UButton size="xl" class="rounded-2xl m-1" to="/coaching">Coaching</UButton>
                 <UButton size="xl" class="rounded-2xl m-1" to="/player">Player</UButton>
                 <UButton size="xl" class="rounded-2xl m-1" to="/prices">Prices</UButton>
+                <UButton size="xl" class="rounded-2xl m-1" to="/schedule">Schedule</UButton>
                 <UButton size="xl" class="rounded-2xl m-1" to="https://www.rocketleague.com/en/news" target="_blank">Updates</UButton>
             </div>
             <div class="flex flex-row justify-self-end">

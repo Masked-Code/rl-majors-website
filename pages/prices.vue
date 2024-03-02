@@ -5,11 +5,11 @@
         {{ currentSelectedDivision }}
       </UButton>
     </UDropdown>
-    <div class="flex flex-col place-items-center">
-      <UTable v-if="currentSelectedDivision == 'Div 1'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d1PlayerPrices || undefined" :columns="columns" class="w-full" />
-      <UTable v-if="currentSelectedDivision == 'Div 2'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d2PlayerPrices || undefined" :columns="columns" class="w-full" />
-      <UTable v-if="currentSelectedDivision == 'Div 3'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d3PlayerPrices || undefined" :columns="columns" class="w-full" />
-    </div>
+      <div class="flex flex-col place-items-center">
+        <UTable v-if="currentSelectedDivision == 'Div 1'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d1PlayerPrices || undefined" :columns="columns" class="w-full" />
+        <UTable v-if="currentSelectedDivision == 'Div 2'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d2PlayerPrices || undefined" :columns="columns" class="w-full" />
+        <UTable v-if="currentSelectedDivision == 'Div 3'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d3PlayerPrices || undefined" :columns="columns" class="w-full" />
+      </div>
   </UCard>
 </template>
 
