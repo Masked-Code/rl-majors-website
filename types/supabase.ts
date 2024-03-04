@@ -9,6 +9,30 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      Players: {
+        Row: {
+          created_at: string
+          discord_id: string | null
+          id: number
+          platform: string | null
+          rl_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          discord_id?: string | null
+          id?: number
+          platform?: string | null
+          rl_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          discord_id?: string | null
+          id?: number
+          platform?: string | null
+          rl_id?: string | null
+        }
+        Relationships: []
+      }
       S1_D1_Prices: {
         Row: {
           created_at: string
@@ -16,6 +40,7 @@ export type Database = {
           id: number
           price: number | null
           rl_id: string
+          tracker_link: string
         }
         Insert: {
           created_at?: string
@@ -23,6 +48,7 @@ export type Database = {
           id?: number
           price?: number | null
           rl_id?: string
+          tracker_link?: string
         }
         Update: {
           created_at?: string
@@ -30,6 +56,118 @@ export type Database = {
           id?: number
           price?: number | null
           rl_id?: string
+          tracker_link?: string
+        }
+        Relationships: []
+      }
+      S1_D2_Prices: {
+        Row: {
+          created_at: string
+          discord_id: string
+          price: number | null
+          rl_id: string
+          tracker_link: string
+        }
+        Insert: {
+          created_at?: string
+          discord_id?: string
+          price?: number | null
+          rl_id?: string
+          tracker_link?: string
+        }
+        Update: {
+          created_at?: string
+          discord_id?: string
+          price?: number | null
+          rl_id?: string
+          tracker_link?: string
+        }
+        Relationships: []
+      }
+      S1_D3_Prices: {
+        Row: {
+          created_at: string
+          discord_id: string
+          id: number
+          price: number | null
+          rl_id: string
+          tracker_link: string
+        }
+        Insert: {
+          created_at?: string
+          discord_id?: string
+          id?: number
+          price?: number | null
+          rl_id?: string
+          tracker_link?: string
+        }
+        Update: {
+          created_at?: string
+          discord_id?: string
+          id?: number
+          price?: number | null
+          rl_id?: string
+          tracker_link?: string
+        }
+        Relationships: []
+      }
+      S1_Prices: {
+        Row: {
+          created_at: string | null
+          discord_id: string
+          price: number | null
+          rl_id: string
+          tracker_link: string
+        }
+        Insert: {
+          created_at?: string | null
+          discord_id?: string
+          price?: number | null
+          rl_id?: string
+          tracker_link?: string
+        }
+        Update: {
+          created_at?: string | null
+          discord_id?: string
+          price?: number | null
+          rl_id?: string
+          tracker_link?: string
+        }
+        Relationships: []
+      }
+      S1_Teams: {
+        Row: {
+          created_at: string
+          current_salary: number | null
+          division: number | null
+          franchise_owner: string | null
+          id: number
+          non_captain_players: Json | null
+          remaining_transactions: number
+          team_captain: string | null
+          team_name: string | null
+        }
+        Insert: {
+          created_at?: string
+          current_salary?: number | null
+          division?: number | null
+          franchise_owner?: string | null
+          id?: number
+          non_captain_players?: Json | null
+          remaining_transactions?: number
+          team_captain?: string | null
+          team_name?: string | null
+        }
+        Update: {
+          created_at?: string
+          current_salary?: number | null
+          division?: number | null
+          franchise_owner?: string | null
+          id?: number
+          non_captain_players?: Json | null
+          remaining_transactions?: number
+          team_captain?: string | null
+          team_name?: string | null
         }
         Relationships: []
       }
