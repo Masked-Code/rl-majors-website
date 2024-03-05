@@ -45,18 +45,23 @@ let currentSelectedDivision = ref('Div 1')
 const client = useSupabaseClient()
 
 const { data: d1PlayerPrices } = await client
-  .from('S1_D1_Prices')
+  .from('S1_Prices')
   .select('')
+  .gte('price', 289)
   .order('price', { ascending: false })
 
 const { data: d2PlayerPrices } = await client
-.from('S1_D2_Prices')
+.from('S1_Prices')
 .select('')
+.lte('price', 288)
+.gte('price', 238)
 .order('price', { ascending: false })
   
 const { data: d3PlayerPrices } = await client
-.from('S1_D3_Prices')
+.from('S1_Prices')
 .select('')
+.lte('price', 237)
+.gte('price', 170)
 .order('price', { ascending: false })
   
 const columns = [{
