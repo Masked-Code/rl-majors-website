@@ -70,47 +70,16 @@ const teams = [{
   'Goal Difference': '+69'
 }]
 
-const selectedTeam = ref([teams[1]])
-
-function select (row: any) {
-  const index = selectedTeam.value.findIndex((item) => item.name === row.id)
-  if (index === -1) {
-    selectedTeam.value.push(row)
-  } else {
-    selectedTeam.value.splice(index, 1)
-  }
-}
-
 const seasons = [
   [{
     label: 'Season 1',
     click: () => {
-      console.log('Season 1')
       currentSelectedSeason = 'Season 1'
     }
   }, {
-    label: 'Season 2',
+    label: 'Season 2 COMING SOON',
     click: () => {
-      console.log('Season 2')
-      currentSelectedSeason = 'Season 2'
-    }
-  }, {
-    label: 'Season 3',
-    click: () => {
-      console.log('Season 3')
-      currentSelectedSeason = 'Season 3'
-    }
-  }, {
-    label: 'Season 4',
-    click: () => {
-      console.log('Season 4')
-      currentSelectedSeason = 'Season 4'
-    }
-  }, {
-    label: 'Season 5',
-    click: () => {
-      console.log('Season 5')
-      currentSelectedSeason = 'Season 5'
+      currentSelectedSeason = 'Season 2 COMING SOON'
     }
   }]
 ]

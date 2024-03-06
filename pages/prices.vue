@@ -7,32 +7,32 @@
     </UDropdown>
       <div class="flex flex-col place-items-center">
         <UTable v-if="currentSelectedDivision == 'Div 1'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d1PlayerPrices || undefined" :columns="columns" class="w-full" >
-          <template #discord_id-data="{row}">
+          <template #discord_username-data="{row}">
             <ULink
-            :to="`/players/${row.discord_id}`"
+            :to="`/players/${row.discord_username}`"
               class="text-primary font-bold text-lg"
             >
-              {{ row.discord_id }}
+              {{ row.discord_username }}
             </ULink>
           </template>
         </UTable>
         <UTable v-if="currentSelectedDivision == 'Div 2'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d2PlayerPrices || undefined" :columns="columns" class="w-full" >
-          <template #discord_id-data="{row}">
+          <template #discord_username-data="{row}">
             <ULink
-            :to="`/players/${row.discord_id}`"
+            :to="`/players/${row.discord_username}`"
               class="text-primary font-bold text-lg"
             >
-              {{ row.discord_id }}
+              {{ row.discord_username }}
             </ULink>
           </template>
         </UTable>
         <UTable v-if="currentSelectedDivision == 'Div 3'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d3PlayerPrices || undefined" :columns="columns" class="w-full" >
-          <template #discord_id-data="{row}">
+          <template #discord_username-data="{row}">
             <ULink
-            :to="`/players/${row.discord_id}`"
+            :to="`/players/${row.discord_username}`"
               class="text-primary font-bold text-lg"
             >
-              {{ row.discord_id }}
+              {{ row.discord_username }}
             </ULink>
           </template>
         </UTable>
@@ -45,27 +45,27 @@ let currentSelectedDivision = ref('Div 1')
 const client = useSupabaseClient()
 
 const { data: d1PlayerPrices } = await client
-  .from('S1_Prices')
+  .from('S1_Player_Data')
   .select('')
   .gte('price', 289)
   .order('price', { ascending: false })
 
 const { data: d2PlayerPrices } = await client
-.from('S1_Prices')
+.from('S1_Player_Data')
 .select('')
 .lte('price', 288)
 .gte('price', 238)
 .order('price', { ascending: false })
   
 const { data: d3PlayerPrices } = await client
-.from('S1_Prices')
+.from('S1_Player_Data')
 .select('')
 .lte('price', 237)
 .gte('price', 170)
 .order('price', { ascending: false })
   
 const columns = [{
-  key: 'discord_id',
+  key: 'discord_username',
   label: 'Discord Username'
 }, {
   key: 'rl_id',
