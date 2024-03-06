@@ -68,6 +68,18 @@ const teams = [{
   'Franchise Owner': 'BuzzNutly',
   'Team Captain': 'Not Chosen',
   'Goal Difference': '+69'
+}, {
+  position: 9,
+  name: 'Columbus Flight',
+  'Franchise Owner': 'Max',
+  'Team Captain': 'Another Guy',
+  'Goal Difference': '+420'
+}, {
+  position: 10,
+  name: 'Detroit Dragons',
+  'Franchise Owner': 'Sandman',
+  'Team Captain': 'Somebody',
+  'Goal Difference': '+1337'
 }]
 
 const seasons = [
