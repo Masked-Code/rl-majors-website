@@ -7,42 +7,294 @@
     </UDropdown>
       <div class="flex flex-col place-items-center">
         <UTable v-if="currentSelectedDivision == 'Div 1'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Team Data.' }" :rows="d1TeamData || undefined" :columns="columns" class="w-full" >
+          <template #team_name-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
           <template #team_name-data="{row}">
-            <ULink
-            :to="`/players/${row.team_name}`"
+            <div class="flex flex-col place-items-center">
+              <ULink
+              :to="`/players/${row.team_name}`"
               class="text-primary font-bold text-lg"
-            >
+              >
               {{ row.team_name }}
             </ULink>
+            </div>
+          </template>
+          <template #franchise_owner-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #franchise_owner-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.franchise_owner }}
+            </div>
+          </template>
+          <template #team_captain-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #team_captain-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.team_captain }}
+            </div>
+          </template>
+          <template #non_captain_players-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
           </template>
           <template #non_captain_players-data="{row}">
+            <div class="flex flex-col place-items-center">
               {{ row.non_captain_players.ncp }}
+            </div>
+          </template>
+          <template #current_salary-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #current_salary-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.current_salary }}
+            </div>
+          </template>
+          <template #remaining_transactions-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #remaining_transactions-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.remaining_transactions }}
+            </div>
+          </template>
+          <template #wins-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #wins-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.wins }}
+            </div>
+          </template>
+          <template #losses-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #losses-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.losses }}
+            </div>
+          </template>
+          <template #goal_difference-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #goal_difference-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.goal_difference }}
+            </div>
           </template>
         </UTable>
         <UTable v-if="currentSelectedDivision == 'Div 2'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Team Data.' }" :rows="d2TeamData || undefined" :columns="columns" class="w-full" >
+          <template #team_name-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
           <template #team_name-data="{row}">
-            <ULink
-            :to="`/players/${row.team_name}`"
+            <div class="flex flex-col place-items-center">
+              <ULink
+              :to="`/players/${row.team_name}`"
               class="text-primary font-bold text-lg"
-            >
+              >
               {{ row.team_name }}
             </ULink>
+            </div>
+          </template>
+          <template #franchise_owner-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #franchise_owner-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.franchise_owner }}
+            </div>
+          </template>
+          <template #team_captain-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #team_captain-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.team_captain }}
+            </div>
+          </template>
+          <template #non_captain_players-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
           </template>
           <template #non_captain_players-data="{row}">
+            <div class="flex flex-col place-items-center">
               {{ row.non_captain_players.ncp }}
+            </div>
+          </template>
+          <template #current_salary-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #current_salary-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.current_salary }}
+            </div>
+          </template>
+          <template #remaining_transactions-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #remaining_transactions-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.remaining_transactions }}
+            </div>
+          </template>
+          <template #wins-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #wins-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.wins }}
+            </div>
+          </template>
+          <template #losses-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #losses-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.losses }}
+            </div>
+          </template>
+          <template #goal_difference-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #goal_difference-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.goal_difference }}
+            </div>
           </template>
         </UTable>
         <UTable v-if="currentSelectedDivision == 'Div 3'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Team Data.' }" :rows="d3TeamData || undefined" :columns="columns" class="w-full" >
+          <template #team_name-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
           <template #team_name-data="{row}">
-            <ULink
-            :to="`/players/${row.team_name}`"
+            <div class="flex flex-col place-items-center">
+              <ULink
+              :to="`/players/${row.team_name}`"
               class="text-primary font-bold text-lg"
-            >
+              >
               {{ row.team_name }}
             </ULink>
+            </div>
+          </template>
+          <template #franchise_owner-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #franchise_owner-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.franchise_owner }}
+            </div>
+          </template>
+          <template #team_captain-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #team_captain-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.team_captain }}
+            </div>
+          </template>
+          <template #non_captain_players-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
           </template>
           <template #non_captain_players-data="{row}">
+            <div class="flex flex-col place-items-center">
               {{ row.non_captain_players.ncp }}
+            </div>
+          </template>
+          <template #current_salary-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #current_salary-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.current_salary }}
+            </div>
+          </template>
+          <template #remaining_transactions-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #remaining_transactions-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.remaining_transactions }}
+            </div>
+          </template>
+          <template #wins-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #wins-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.wins }}
+            </div>
+          </template>
+          <template #losses-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #losses-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.losses }}
+            </div>
+          </template>
+          <template #goal_difference-header="{column}">
+            <div class="flex flex-col place-items-center">
+              {{ column.label }}
+            </div>
+          </template>
+          <template #goal_difference-data="{row}">
+            <div class="flex flex-col place-items-center">
+              {{ row.goal_difference }}
+            </div>
           </template>
         </UTable>
       </div>
@@ -92,7 +344,16 @@ const columns = [{
   }, {
     key: 'remaining_transactions',
     label: 'Remaining Transactions'
-}]
+  }, {
+    key: 'wins',
+    label: 'Wins'
+  }, {
+    key: 'losses',
+    label: 'Losses'
+  }, {
+    key: 'goal_difference',
+    label: 'Goal Difference'
+  }]
 
 const divisions = [
   [{
