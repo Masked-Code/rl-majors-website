@@ -1,97 +1,114 @@
 <template>
   <UCard class="rounded-2xl ml-[10%] mr-[10%] min-h-96">
-    <UDropdown :items="seasons" :popper="{ placement: 'bottom-start' }">
-      <UButton color="primary" :label="currentSelectedSeason" trailing-icon="i-heroicons-chevron-down-20-solid" class="m-1" size="md"/>
+    <UDropdown :items="divisions" :popper="{ placement: 'bottom-start' }">
+      <UButton color="primary" trailing-icon="i-heroicons-chevron-down-20-solid" class="m-1" size="md" >
+        {{ currentSelectedDivision }}
+      </UButton>
     </UDropdown>
-    <div class="flex flex-col place-items-center">
-      <UTable :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No items.' }" :rows="teams" class="w-full">
-        <template #name-data="{row}">
-          <ULink
-          :to="`/teams/${row.name.split(' ').join('')}`"
-            class="text-primary font-bold text-lg"
-          >
-            {{ row.name }}
-          </ULink>
-        </template>
-      </UTable>
-    </div>
+      <div class="flex flex-col place-items-center">
+        <UTable v-if="currentSelectedDivision == 'Div 1'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Team Data.' }" :rows="d1TeamData || undefined" :columns="columns" class="w-full" >
+          <template #team_name-data="{row}">
+            <ULink
+            :to="`/players/${row.team_name}`"
+              class="text-primary font-bold text-lg"
+            >
+              {{ row.team_name }}
+            </ULink>
+          </template>
+          <template #non_captain_players-data="{row}">
+              {{ row.non_captain_players.ncp }}
+          </template>
+        </UTable>
+        <UTable v-if="currentSelectedDivision == 'Div 2'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Team Data.' }" :rows="d2TeamData || undefined" :columns="columns" class="w-full" >
+          <template #team_name-data="{row}">
+            <ULink
+            :to="`/players/${row.team_name}`"
+              class="text-primary font-bold text-lg"
+            >
+              {{ row.team_name }}
+            </ULink>
+          </template>
+          <template #non_captain_players-data="{row}">
+              {{ row.non_captain_players.ncp }}
+          </template>
+        </UTable>
+        <UTable v-if="currentSelectedDivision == 'Div 3'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Team Data.' }" :rows="d3TeamData || undefined" :columns="columns" class="w-full" >
+          <template #team_name-data="{row}">
+            <ULink
+            :to="`/players/${row.team_name}`"
+              class="text-primary font-bold text-lg"
+            >
+              {{ row.team_name }}
+            </ULink>
+          </template>
+          <template #non_captain_players-data="{row}">
+              {{ row.non_captain_players.ncp }}
+          </template>
+        </UTable>
+      </div>
   </UCard>
 </template>
 
 <script lang="ts" setup>
-let currentSelectedSeason = 'Season 1'
-const teams = [{
-  position: 1,
-  name: 'Amarillo Armadillos',
-  'Franchise Owner': 'Pluggin',
-  'Team Captain': 'TyRogers',
-  'Goal Difference': '+3'
-}, {
-  position: 2,
-  name: 'Lafayette Lightning',
-  'Franchise Owner': 'Juicy',
-  'Team Captain': 'Landon',
-  'Goal Difference': '-1'
-}, {
-  position: 3,
-  name: 'Midland Manticores',
-  'Franchise Owner': 'Greninja',
-  'Team Captain': 'Not Chosen',
-  'Goal Difference': '0'
-}, {
-  position: 4,
-  name: 'Pheonix Phantoms',
-  'Franchise Owner': 'Wheat',
-  'Team Captain': 'Not Chosen',
-  'Goal Difference': '0'
-}, {
-  position: 5,
-  name: 'Miami Skyline',
-  'Franchise Owner': 'Dyln',
-  'Team Captain': 'Ahmed',
-  'Goal Difference': '-2'
-}, {
-  position: 6,
-  name: 'Boston Braves',
-  'Franchise Owner': 'DBrown',
-  'Team Captain': 'Brandon',
-  'Goal Difference': '+1'
-}, {
-  position: 7,
-  name: 'Austin Asteroids',
-  'Franchise Owner': 'Askey',
-  'Team Captain': 'Ice',
-  'Goal Difference': '-1'
-}, {
-  position: 8,
-  name: 'Morgantown Monsters',
-  'Franchise Owner': 'BuzzNutly',
-  'Team Captain': 'Not Chosen',
-  'Goal Difference': '+69'
-}, {
-  position: 9,
-  name: 'Columbus Flight',
-  'Franchise Owner': 'Max',
-  'Team Captain': 'Another Guy',
-  'Goal Difference': '+420'
-}, {
-  position: 10,
-  name: 'Detroit Dragons',
-  'Franchise Owner': 'Sandman',
-  'Team Captain': 'Somebody',
-  'Goal Difference': '+1337'
+let currentSelectedDivision = ref('Div 1')
+const client = useSupabaseClient()
+
+const { data: d1TeamData } = await client
+  .from('S1_Team_Data')
+  .select('')
+  .eq('division', 1)
+  .order('wins', { ascending: true })
+  .order('goal_difference', { ascending: true})
+
+const { data: d2TeamData } = await client
+.from('S1_Team_Data')
+  .select('')
+  .eq('division', 2)
+  .order('wins', { ascending: true })
+  .order('goal_difference', { ascending: true})
+  
+const { data: d3TeamData } = await client
+.from('S1_Team_Data')
+  .select('')
+  .eq('division', 3)
+  .order('wins', { ascending: true })
+  .order('goal_difference', { ascending: true})
+  
+const columns = [{
+    key: 'team_name',
+    label: 'Team Name'
+  }, {
+    key: 'franchise_owner',
+    label: 'Franchise Owner'
+  }, {
+    key: 'team_captain',
+    label: 'Team Captain'
+  }, {
+    key: 'non_captain_players',
+    label: 'Non-Captain Players'
+  }, {
+    key: 'current_salary',
+    label: 'Remaining Salary'
+  }, {
+    key: 'remaining_transactions',
+    label: 'Remaining Transactions'
 }]
 
-const seasons = [
+const divisions = [
   [{
-    label: 'Season 1',
+    label: 'Div 1',
     click: () => {
-      currentSelectedSeason = 'Season 1'
+      currentSelectedDivision.value = 'Div 1'
     }
   }, {
-    label: 'Season 2 COMING SOON',
+    label: 'Div 2',
     click: () => {
-      currentSelectedSeason = 'Season 2 COMING SOON'
+      currentSelectedDivision.value = 'Div 2'
+    }
+  }, {
+    label: 'Div 3',
+    click: () => {
+      currentSelectedDivision.value = 'Div 3'
     }
   }]
 ]
