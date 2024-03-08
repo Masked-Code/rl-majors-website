@@ -309,22 +309,22 @@ const { data: d1TeamData } = await client
   .from('S1_Team_Data')
   .select('')
   .eq('division', 1)
-  .order('wins', { ascending: true })
-  .order('goal_difference', { ascending: true})
+  .order('wins', { ascending: false })
+  .order('goal_difference', { ascending: false})
 
 const { data: d2TeamData } = await client
 .from('S1_Team_Data')
   .select('')
   .eq('division', 2)
-  .order('wins', { ascending: true })
-  .order('goal_difference', { ascending: true})
+  .order('wins', { ascending: false })
+  .order('goal_difference', { ascending: false})
   
 const { data: d3TeamData } = await client
 .from('S1_Team_Data')
   .select('')
   .eq('division', 3)
-  .order('wins', { ascending: true })
-  .order('goal_difference', { ascending: true})
+  .order('wins', { ascending: false })
+  .order('goal_difference', { ascending: false})
   
 const columns = [{
     key: 'team_name',
