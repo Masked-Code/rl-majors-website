@@ -78,7 +78,7 @@
             </div>
           </template>
           <template #wins-data="{row}">
-            <div class="flex flex-col place-items-center">
+            <div class="flex flex-col place-items-center text-green-600 font-bold text-lg">
               {{ row.wins }}
             </div>
           </template>
@@ -88,7 +88,7 @@
             </div>
           </template>
           <template #losses-data="{row}">
-            <div class="flex flex-col place-items-center">
+            <div class="flex flex-col place-items-center text-red-600 font-bold text-lg">
               {{ row.losses }}
             </div>
           </template>
@@ -98,7 +98,7 @@
             </div>
           </template>
           <template #goal_difference-data="{row}">
-            <div class="flex flex-col place-items-center">
+            <div class="flex flex-col place-items-center text-primary font-bold text-lg">
               {{ row.goal_difference }}
             </div>
           </template>
@@ -175,7 +175,7 @@
             </div>
           </template>
           <template #wins-data="{row}">
-            <div class="flex flex-col place-items-center">
+            <div class="flex flex-col place-items-center text-green-600 font-bold text-lg">
               {{ row.wins }}
             </div>
           </template>
@@ -185,7 +185,7 @@
             </div>
           </template>
           <template #losses-data="{row}">
-            <div class="flex flex-col place-items-center">
+            <div class="flex flex-col place-items-center text-red-600 font-bold text-lg">
               {{ row.losses }}
             </div>
           </template>
@@ -195,7 +195,7 @@
             </div>
           </template>
           <template #goal_difference-data="{row}">
-            <div class="flex flex-col place-items-center">
+            <div class="flex flex-col place-items-center text-primary font-bold text-lg">
               {{ row.goal_difference }}
             </div>
           </template>
@@ -272,7 +272,7 @@
             </div>
           </template>
           <template #wins-data="{row}">
-            <div class="flex flex-col place-items-center">
+            <div class="flex flex-col place-items-center text-green-600 font-bold text-lg">
               {{ row.wins }}
             </div>
           </template>
@@ -282,7 +282,7 @@
             </div>
           </template>
           <template #losses-data="{row}">
-            <div class="flex flex-col place-items-center">
+            <div class="flex flex-col place-items-center text-red-600 font-bold text-lg">
               {{ row.losses }}
             </div>
           </template>
@@ -292,7 +292,7 @@
             </div>
           </template>
           <template #goal_difference-data="{row}">
-            <div class="flex flex-col place-items-center">
+            <div class="flex flex-col place-items-center text-primary font-bold text-lg">
               {{ row.goal_difference }}
             </div>
           </template>
