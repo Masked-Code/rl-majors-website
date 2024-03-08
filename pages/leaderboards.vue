@@ -310,6 +310,7 @@ const { data: d1TeamData } = await client
   .select('')
   .eq('division', 1)
   .order('wins', { ascending: false })
+  .order('losses', { ascending: true })
   .order('goal_difference', { ascending: false})
 
 const { data: d2TeamData } = await client
@@ -317,6 +318,7 @@ const { data: d2TeamData } = await client
   .select('')
   .eq('division', 2)
   .order('wins', { ascending: false })
+  .order('losses', { ascending: true })
   .order('goal_difference', { ascending: false})
   
 const { data: d3TeamData } = await client
@@ -324,6 +326,7 @@ const { data: d3TeamData } = await client
   .select('')
   .eq('division', 3)
   .order('wins', { ascending: false })
+  .order('losses', { ascending: true })
   .order('goal_difference', { ascending: false})
   
 const columns = [{
