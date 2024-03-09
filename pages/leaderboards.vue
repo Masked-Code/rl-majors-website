@@ -49,7 +49,7 @@
           </template>
           <template #non_captain_players-data="{row}">
             <div class="flex flex-col place-items-center">
-              {{ row.non_captain_players.ncp }}
+              <p v-for="singlePlayer in row.non_captain_players.ncp">{{ singlePlayer }}</p>
             </div>
           </template>
           <template #current_salary-header="{column}">
