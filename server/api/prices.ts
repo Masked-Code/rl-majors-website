@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   const user = await serverSupabaseUser(event)
   const client = await serverSupabaseClient<Database>(event)
 
-  const { data, error } = await client.from('S1_D1_Prices').select('').order('price')
+  const { data, error } = await client.from('S1_Player_Data').select('').order('price')
   if (error) {
     throw createError({ statusMessage: error.message })
   }
