@@ -15,7 +15,7 @@
           <template #team_name-data="{row}">
             <div class="flex flex-col place-items-center">
               <ULink
-              :to="`/teams/${row.team_name.split(' ').join('')}`"
+              :to="`/teams/div1/${row.team_name.split(' ').join('')}`"
                 class="text-primary font-bold text-lg"
               >
               {{ row.team_name }}
@@ -112,7 +112,7 @@
           <template #team_name-data="{row}">
             <div class="flex flex-col place-items-center">
               <ULink
-              :to="`/teams/${row.team_name.split(' ').join('')}`"
+              :to="`/teams/div2/${row.team_name.split(' ').join('')}`"
                 class="text-primary font-bold text-lg"
               >
               {{ row.team_name }}
@@ -209,7 +209,7 @@
           <template #team_name-data="{row}">
             <div class="flex flex-col place-items-center">
               <ULink
-              :to="`/teams/${row.team_name.split(' ').join('')}`"
+              :to="`/teams/div3/${row.team_name.split(' ').join('')}`"
                 class="text-primary font-bold text-lg"
               >
               {{ row.team_name }}
