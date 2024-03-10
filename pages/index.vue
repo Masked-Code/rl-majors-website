@@ -2,11 +2,26 @@
   <UCard class="rounded-2xl ml-[10%] mr-[10%] min-h-96">
     <div class="flex flex-col place-items-center">
       <p class="text-xl m-2 text-red-600">This website is currently under construction</p>
-      <h1 class="text-5xl m-2">The <b class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-700">Gold Standard</b> For Tournaments <b class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-500">By</b> Rocket League</h1>
-      <h1 class="text-5xl m-2">Players <b class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-500">For</b> Rocket League Players</h1>
-      <p class="text-2xl m-2">Join The Discord And Start Competing</p>
-      <div class="flex flex-row m-3">
+      <h1 class="flex text-6xl m-2 p-4 text-transparent bg-clip-text bg-gradient-to-br from-amber-400 to-yellow-700 font-bold text-center">The Gold Standard For Tournaments By Rocket League Players For Rocket League Players</h1>
+      <p class="text-3xl font-bold m-2">Join The Discord And Start Competing</p>
+        <div class="flex flex-row justify-center">
+        <UCard class="flex flex-col m-3 max-w-[25%]">
+          <template #header>
+            <div class="flex text-xl font-bold text-center m-1">Prize Money</div>
+          </template>
+
+          <div>Team up with your friends and perform your best to compete for the prize money within each division!</div>
+        </UCard>
+        <UCard class="flex flex-col m-3 max-w-[25%]">
+          <template #header>
+            <div class="flex text-xl font-bold text-center m-1">Skill Improvement</div>
+          </template>
+
+          <div>Compete with players around and above your skill level!</div>
+        </UCard>
+        <div class="flex flex-row m-3">
           <iframe src="https://discord.com/widget?id=1047297400416514068&theme=dark" width="350" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" class="rounded-2xl"></iframe>
+        </div>
       </div>
     </div>
   </UCard>
