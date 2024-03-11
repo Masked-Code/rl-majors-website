@@ -22,10 +22,9 @@ const route = useRoute();
 const platforms = ['epic', 'steam', 'psn', 'xbl', 'switch'];
 const platform = ref(platforms[0]);
 const rlid = ref('');
-
+const headers = useRequestHeaders(['cookie'])
 async function searchForPlayer() {
-    const { data: trnPlayerData } = await useFetch(`https://api.tracker.gg/api/v2/rocket-league/standard/profile/${this.platform}/${this.rlid}`, {
-    'TRN-Api-Key': 'XX-XX-XX-XX'});
+    const { data: trnPlayerData } = await $fetch(`https://api.tracker.gg/api/v2/rocket-league/standard/profile/${platform.value}/${rlid.value}`, { headers: { "TRN-Api-Key": "43d536f4-07ec-42af-a11f-d47ae2ada68f"}});
 };
 </script>
 
