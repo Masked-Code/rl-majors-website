@@ -1,8 +1,7 @@
 <template>
-  <VideoBackground />
+  <VideoBackground v-if="route.name == 'index'" />
   <NuxtLayout>
     <AppHeader />
-    <div> {{ route.name }} </div>
     <div>
       <NuxtPage />
     </div>
