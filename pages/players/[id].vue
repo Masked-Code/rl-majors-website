@@ -5,13 +5,14 @@
       </div>
      
     </UCard>
-  </template>
-  
-  <script setup>
-  const route = useRoute()
-  const playerName = route.params.id
-  
-  </script>
-  
-  <style>
-  </style>
+</template>
+
+<script setup>
+const route = useRoute();
+const platform = 'xbl'
+const playerName = route.params.id
+
+</script>
+
+<style>
+</style>
