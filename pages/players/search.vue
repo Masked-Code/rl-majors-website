@@ -19,7 +19,6 @@
 
 <script setup>
 const route = useRoute();
-const platform = 'xbl'
 const platforms = ['epic', 'steam', 'psn', 'xbl', 'switch']
 const platform = ref(platforms[0])
 const rlid = ref('')
