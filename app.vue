@@ -1,4 +1,5 @@
 <template>
+  <VideoBackground />
   <NuxtLayout>
     <AppHeader />
     <div>
@@ -9,6 +10,7 @@
 </template>
 
 <script setup lang="ts">
+import VideoBackground from '~/components/AppVideoBackground.vue';
 useHead({
   title: 'RL Majors',
   meta: [
