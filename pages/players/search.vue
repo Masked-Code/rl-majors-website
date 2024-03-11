@@ -23,7 +23,7 @@ const platforms = ['epic', 'steam', 'psn', 'xbl', 'switch'];
 const platform = ref(platforms[0]);
 const rlid = ref('');
 
-searchForPlayer() {
+async function searchForPlayer() {
     const { data: trnPlayerData } = await useFetch(`https://api.tracker.gg/api/v2/rocket-league/standard/profile/${platform}/${rlid}`);
 };
 </script>
