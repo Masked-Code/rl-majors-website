@@ -2,7 +2,7 @@
   <VideoBackground />
   <NuxtLayout>
     <AppHeader />
-    <div> {{ route }} </div>
+    <div> {{ route.params.id }} </div>
     <div>
       <NuxtPage />
     </div>
