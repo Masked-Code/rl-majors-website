@@ -1,7 +1,7 @@
 <template>
     <UCard class="rounded-2xl ml-[10%] mr-[10%] min-h-96">
         <div>
-            <USelect v-model="country" :options="countries" />
+            <USelect v-model="platform" :options="platforms" />
         </div>
         <div>
             <template>
