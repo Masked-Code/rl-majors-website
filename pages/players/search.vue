@@ -24,7 +24,8 @@ const platform = ref(platforms[0]);
 const rlid = ref('');
 
 async function searchForPlayer() {
-    const { data: trnPlayerData } = await useFetch(`https://api.tracker.gg/api/v2/rocket-league/standard/profile/${this.platform}/${this.rlid}`);
+    const { data: trnPlayerData } = await useFetch(`https://api.tracker.gg/api/v2/rocket-league/standard/profile/${this.platform}/${this.rlid}`, {
+    'TRN-Api-Key': 'XX-XX-XX-XX'});
 };
 </script>
 
