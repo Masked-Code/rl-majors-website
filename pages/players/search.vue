@@ -24,7 +24,7 @@ const platform = ref(platforms[0]);
 const rlid = ref('');
 
 async function searchForPlayer() {
-    const { pending, data: trnPlayerData } = await useLazyFetch(`https://api.tracker.gg/api/v2/rocket-league/standard/profile/${platform}/${rlid}`);
+    const { data: trnPlayerData } = await $fetch(`https://api.tracker.gg/api/v2/rocket-league/standard/profile/${platform}/${rlid}`);
 };
 </script>
 
