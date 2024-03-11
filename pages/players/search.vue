@@ -19,13 +19,13 @@
 
 <script setup>
 const route = useRoute();
-const platforms = ['epic', 'steam', 'psn', 'xbl', 'switch']
-const platform = ref(platforms[0])
-const rlid = ref('')
+const platforms = ['epic', 'steam', 'psn', 'xbl', 'switch'];
+const platform = ref(platforms[0]);
+const rlid = ref('');
 
 searchForPlayer() {
-    const { data: trnPlayerData } = await useFetch(`https://api.tracker.gg/api/v2/rocket-league/standard/profile/${platform}/${rlid}`)
-}
+    const { data: trnPlayerData } = await useFetch(`https://api.tracker.gg/api/v2/rocket-league/standard/profile/${platform}/${rlid}`);
+};
 </script>
 
 <style>
