@@ -2,6 +2,7 @@
   <VideoBackground />
   <NuxtLayout>
     <AppHeader />
+    <div> {{ route }} </div>
     <div>
       <NuxtPage />
     </div>
@@ -11,6 +12,7 @@
 
 <script setup lang="ts">
 import VideoBackground from '~/components/AppVideoBackground.vue';
+const route = useRoute();
 useHead({
   title: 'RL Majors',
   meta: [
