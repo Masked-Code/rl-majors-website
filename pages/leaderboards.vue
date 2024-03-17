@@ -336,12 +336,6 @@ const columns = [{
     key: 'franchise_owner',
     label: 'Franchise Owner'
   }, {
-    key: 'team_captain',
-    label: 'Team Captain'
-  }, {
-    key: 'non_captain_players',
-    label: 'Non-Captain Players'
-  }, {
     key: 'current_salary',
     label: 'Remaining Salary'
   }, {
