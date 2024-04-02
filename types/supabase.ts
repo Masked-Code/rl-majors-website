@@ -20,6 +20,7 @@ export type Database = {
           id: number
           platform: string | null
           platform_id: string | null
+          price: number | null
           season: number | null
           seasonal_stats: Json | null
           tags: Json | null
@@ -35,6 +36,7 @@ export type Database = {
           id?: number
           platform?: string | null
           platform_id?: string | null
+          price?: number | null
           season?: number | null
           seasonal_stats?: Json | null
           tags?: Json | null
@@ -50,6 +52,7 @@ export type Database = {
           id?: number
           platform?: string | null
           platform_id?: string | null
+          price?: number | null
           season?: number | null
           seasonal_stats?: Json | null
           tags?: Json | null

@@ -7,7 +7,7 @@
             <div class="justify-self-center">
                 <UButton size="xl" class="rounded-2xl m-1" to="/leaderboards">Leaderboards</UButton>
                 <UButton size="xl" class="rounded-2xl m-1" to="/coaching">Coaching</UButton>
-                <UButton size="xl" class="rounded-2xl m-1" to="/player">Player</UButton>
+                <UButton size="xl" class="rounded-2xl m-1" to="/search">Player</UButton>
                 <UButton size="xl" class="rounded-2xl m-1" to="/prices">Prices</UButton>
                 <UButton size="xl" class="rounded-2xl m-1" to="/schedule">Schedule</UButton>
                 <UButton size="xl" class="rounded-2xl m-1" to="https://www.rocketleague.com/en/news" target="_blank">Updates</UButton>
