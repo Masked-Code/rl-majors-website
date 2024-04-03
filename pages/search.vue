@@ -1,31 +1,38 @@
 <template>
     <UCard class="rounded-2xl ml-[10%] mr-[10%] min-h-96">
-        <div>
-            <USelect v-model="platform" :options="platforms" />
+        <div class="flex flex-col mx-[35%] text-center m-6">
+            <h1 class="font-bold text-5xl">Search For A Player</h1>
         </div>
-        <div>
-            <template>
-              <UInput v-model="rlid" placeholder="Rocket League ID"/>
-            </template>
-        </div>
-        <div>
-            <UButton @click="searchForPlayer">Search</UButton>
-        </div>
-        <div>
-            TRN PLAYER DATA: {{ trnPlayerData }}
+        <div class="mx-[35%]">
+            <UInputMenu
+                size="xl"
+                v-model="selected"
+                :options="options"
+                placeholder="Select a person"
+                by="id"
+                option-attribute="name"
+                :search-attributes="['name', 'colors']"
+            >
+                <template #option="{ option: person }">
+                    <span v-for="color in person.colors" :key="color.id" class="h-2 w-2 rounded-full" :class="`bg-${color}-500 dark:bg-${color}-400`" />
+                    <span class="truncate">{{ person.name }}</span>
+                </template>
+            </UInputMenu>
         </div>
     </UCard>
 </template>
 
 <script setup>
-const route = useRoute();
-const platforms = ['epic', 'steam', 'psn', 'xbl', 'switch'];
-const platform = ref(platforms[0]);
-const rlid = ref('');
-const headers = useRequestHeaders(['cookie'])
-async function searchForPlayer() {
-    const { data: trnPlayerData } = await $fetch(`https://api.tracker.gg/api/v2/rocket-league/standard/profile/${platform.value}/${rlid.value}`, { headers: { "TRN-Api-Key": "43d536f4-07ec-42af-a11f-d47ae2ada68f"}});
-};
+const options = [
+  { id: 1, name: 'Wade Cooper', colors: ['red', 'yellow'] },
+  { id: 2, name: 'Arlene Mccoy', colors: ['blue', 'yellow'] },
+  { id: 3, name: 'Devon Webb', colors: ['green', 'blue'] },
+  { id: 4, name: 'Tom Cook', colors: ['blue', 'red'] },
+  { id: 5, name: 'Tanya Fox', colors: ['green', 'red'] },
+  { id: 5, name: 'Hellen Schmidt', colors: ['green', 'yellow'] }
+]
+
+const selected = ref(options[1])
 </script>
 
 <style>
