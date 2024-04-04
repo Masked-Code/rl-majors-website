@@ -9,6 +9,10 @@
     </div>
     <UDivider></UDivider>
     <UDropdown :items="seasons" :popper="{ placement: 'bottom-start' }">
+      <UButton color="primary" trailing-icon="i-heroicons-chevron-down-20-solid" class="m-1" size="md" >
+        {{ currentSelectedDivision }}
+      </UButton>
+    </UDropdown>
     <div v-if="playerData">
       {{ playerData.find((seasonalPlayerDataThingy) => seasonalPlayerDataThingy.season = currentSelectedSeason ? currentSelectedSeason : playerData[0].season) }}
     </div>
