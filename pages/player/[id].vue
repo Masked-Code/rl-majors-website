@@ -8,8 +8,9 @@
       <h1 class="place-self-center m-2 ml-10 text-xl">Price {{ playerData[playerData.length - 1].price }}</h1>
     </div>
     <UDivider></UDivider>
+    <UDropdown :items="seasons" :popper="{ placement: 'bottom-start' }">
     <div v-if="playerData">
-      {{ playerData }}
+      {{ playerData.find((seasonalPlayerDataThingy) => seasonalPlayerDataThingy.season = currentSelectedSeason }}
     </div>
     <div v-else>
       There is no data on this player
@@ -20,6 +21,7 @@
 <script setup>
 import PlaytylePieChart from '~/components/PlaystylePieChart.vue'
 import TeamRankingLineChart from '~/components/TeamRankingLineChart.vue'
+let currentSelectedSeason = ref()
 const client = useSupabaseClient()
 const route = useRoute()
 const user = useSupabaseUser()
@@ -29,8 +31,26 @@ const { data: playerData, error: playerDataError } = await client
   .eq('discord_username', route.params.id)
   .order('season')
 
-  console.log("PlayerData", playerData)
-console.log("dataError", playerDataError)
+const seasons = []
+playerData.forEach((seasonalData) => seasons.push({label: `Season ${seasonalData.season}`, click: () => {currentSelectedSeason.value = `${seasonalData.season}`}});
+// const seasons = [
+// [{
+//   label: 'Season 1',
+//   click: () => {
+//     currentSelectedSeason.value = '1'
+//   }
+// }, {
+//   label: 'Season 2',
+//   click: () => {
+//     currentSelectedSeason.value = '2'
+//   }
+// }, {
+//   label: 'Season 3',
+//   click: () => {
+//     currentSelectedSeason.value = '3'
+//   }
+// }]
+// ]
 </script>
 
 <style>
