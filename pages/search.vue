@@ -3,36 +3,53 @@
         <div class="flex flex-col mx-[35%] text-center m-6">
             <h1 class="font-bold text-5xl">Search For A Player</h1>
         </div>
-        <div class="mx-[35%]">
+        <div class="mx-[35%] m-10">
             <UInputMenu
+                class="shadow-xl"
                 size="xl"
                 v-model="selected"
-                :options="options"
-                placeholder="Select a person"
-                by="id"
-                option-attribute="name"
-                :search-attributes="['name', 'colors']"
+                :options="uniquePlayers"
+                placeholder="Find a player..."
+                by="discord_username"
+                option-attribute="discord_username"
+                :search-attributes="['discord_id', 'discord_username', 'display_name', 'platform_id']"
+                @select="routeToSelected()"
             >
-                <template #option="{ option: person }">
-                    <span v-for="color in person.colors" :key="color.id" class="h-2 w-2 rounded-full" :class="`bg-${color}-500 dark:bg-${color}-400`" />
-                    <span class="truncate">{{ person.name }}</span>
+                <template #option="{ option: player }">
+                    <span v-if="player.display_name">{{ player.display_name }}</span>
+                    <span v-else>{{ player.discord_username }}</span>
                 </template>
             </UInputMenu>
         </div>
     </UCard>
 </template>
 
-<script setup>
-const options = [
-  { id: 1, name: 'Wade Cooper', colors: ['red', 'yellow'] },
-  { id: 2, name: 'Arlene Mccoy', colors: ['blue', 'yellow'] },
-  { id: 3, name: 'Devon Webb', colors: ['green', 'blue'] },
-  { id: 4, name: 'Tom Cook', colors: ['blue', 'red'] },
-  { id: 5, name: 'Tanya Fox', colors: ['green', 'red'] },
-  { id: 5, name: 'Hellen Schmidt', colors: ['green', 'yellow'] }
-]
-
-const selected = ref(options[1])
+<script lang="ts" setup>
+const route = useRoute()
+const client = useSupabaseClient()
+const { data: players } = await client
+    .from('Player_Data')
+    .select('*')
+    .order('season')
+    .order('division')
+    .order('price')
+const uniquePlayers = (() => {
+    const seenDiscordUsernames = new Set();
+    return players.filter(player => {
+    if (!seenDiscordUsernames.has(player.discord_username)) {
+        seenDiscordUsernames.add(player.discord_username);
+        return true;
+    }
+    return false;
+    });
+})();
+const selected = ref()
+function routeToSelected() {
+    if (selected) {
+        navigateTo(`/player/${selected._value.discord_username}`);
+    }
+}
+watch(selected, routeToSelected);
 </script>
 
 <style>
