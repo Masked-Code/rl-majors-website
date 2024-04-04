@@ -14,7 +14,7 @@
       </UButton>
     </UDropdown>
     <div v-if="playerData">
-      {{ playerData.find((seasonalPlayerDataThingy) => seasonalPlayerDataThingy.season = currentSelectedSeason ? currentSelectedSeason : playerData[0].season) }}
+      {{ playerData.find((seasonalPlayerDataThingy) => seasonalPlayerDataThingy.season == currentSelectedSeason ? currentSelectedSeason : playerData[0].season) }}
     </div>
     <div v-else>
       There is no data on this player
