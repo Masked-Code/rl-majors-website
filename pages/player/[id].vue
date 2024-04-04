@@ -10,7 +10,7 @@
     <UDivider></UDivider>
     <UDropdown :items="seasons" :popper="{ placement: 'bottom-start' }">
     <div v-if="playerData">
-      {{ playerData.find((seasonalPlayerDataThingy) => seasonalPlayerDataThingy.season = currentSelectedSeason) }}
+      {{ playerData.find((seasonalPlayerDataThingy) => seasonalPlayerDataThingy.season = currentSelectedSeason ? currentSelectedSeason : playerData[0].season) }}
     </div>
     <div v-else>
       There is no data on this player
