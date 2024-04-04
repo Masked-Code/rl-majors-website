@@ -1,7 +1,7 @@
 <template>
   <UCard class="rounded-2xl ml-[10%] mr-[10%] min-h-96">
     <div class="flex flex-flow m-3">
-      <img :src="user.user_metadata.avatar_url" class="rounded-2xl">
+      <img :src="~/assets/RLMajors_logo_Big.png" class="rounded-2xl">
       <h1 v-if="playerData[0].display_name" class="place-self-center m-2 ml-10 text-4xl">{{ playerData[playerData.length - 1].display_name }}</h1>
       <h1 v-else class="place-self-center m-2 ml-10 text-4xl">{{ playerData[playerData.length - 1].discord_username }}</h1>
       <h1 class="place-self-center m-2 ml-10 text-xl">Div {{  playerData[playerData.length - 1].division  }}</h1>
