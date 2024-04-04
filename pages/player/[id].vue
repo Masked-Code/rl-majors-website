@@ -10,7 +10,7 @@
     <UDivider></UDivider>
     <UDropdown :items="seasons" :popper="{ placement: 'bottom-start' }">
       <UButton color="primary" trailing-icon="i-heroicons-chevron-down-20-solid" class="m-1" size="md" >
-        {{ currentSelectedDivision }}
+        {{ currentSelectedSeason }}
       </UButton>
     </UDropdown>
     <div v-if="playerData">
