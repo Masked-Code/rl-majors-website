@@ -36,7 +36,7 @@ const { data: playerData, error: playerDataError } = await client
   .order('season')
 
 const seasons = []
-playerData.forEach((seasonalData) => seasons.push([{label: `Season ${seasonalData.season}`, click: () => {currentSelectedSeason.value = `${seasonalData.season}`}}]);
+playerData.forEach((seasonalData) => seasons.push({label: `Season ${seasonalData.season}`, click: () => {currentSelectedSeason.value = `${seasonalData.season}`}});
 // const seasons = [
 // [{
 //   label: 'Season 1',
