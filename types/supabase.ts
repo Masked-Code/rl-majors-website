@@ -17,13 +17,14 @@ export type Database = {
           discord_username: string | null
           display_name: string | null
           division: number | null
-          id: number
+          id: string
           platform: string | null
           platform_id: string | null
           price: number | null
           season: number | null
           seasonal_stats: Json | null
           tags: Json | null
+          team_uuid: string | null
           tracker_link: string | null
         }
         Insert: {
@@ -33,13 +34,14 @@ export type Database = {
           discord_username?: string | null
           display_name?: string | null
           division?: number | null
-          id?: number
+          id?: string
           platform?: string | null
           platform_id?: string | null
           price?: number | null
           season?: number | null
           seasonal_stats?: Json | null
           tags?: Json | null
+          team_uuid?: string | null
           tracker_link?: string | null
         }
         Update: {
@@ -49,16 +51,25 @@ export type Database = {
           discord_username?: string | null
           display_name?: string | null
           division?: number | null
-          id?: number
+          id?: string
           platform?: string | null
           platform_id?: string | null
           price?: number | null
           season?: number | null
           seasonal_stats?: Json | null
           tags?: Json | null
+          team_uuid?: string | null
           tracker_link?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "public_Player_Data_team_uuid_fkey"
+            columns: ["team_uuid"]
+            isOneToOne: false
+            referencedRelation: "Team_Data"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       Players: {
         Row: {
@@ -230,8 +241,9 @@ export type Database = {
           created_at: string
           division: number | null
           goal_difference: number | null
-          id: number
+          id: string
           losses: number | null
+          players: string[] | null
           remaining_salary: number | null
           remaining_transactions: number | null
           season: number | null
@@ -239,15 +251,15 @@ export type Database = {
           team_captain: string | null
           team_name: string | null
           team_owner: string | null
-          team_players: string[] | null
           wins: number | null
         }
         Insert: {
           created_at?: string
           division?: number | null
           goal_difference?: number | null
-          id?: number
+          id?: string
           losses?: number | null
+          players?: string[] | null
           remaining_salary?: number | null
           remaining_transactions?: number | null
           season?: number | null
@@ -255,15 +267,15 @@ export type Database = {
           team_captain?: string | null
           team_name?: string | null
           team_owner?: string | null
-          team_players?: string[] | null
           wins?: number | null
         }
         Update: {
           created_at?: string
           division?: number | null
           goal_difference?: number | null
-          id?: number
+          id?: string
           losses?: number | null
+          players?: string[] | null
           remaining_salary?: number | null
           remaining_transactions?: number | null
           season?: number | null
@@ -271,7 +283,6 @@ export type Database = {
           team_captain?: string | null
           team_name?: string | null
           team_owner?: string | null
-          team_players?: string[] | null
           wins?: number | null
         }
         Relationships: []
