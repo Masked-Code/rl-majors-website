@@ -35,7 +35,7 @@ const { data: playerData, error: playerDataError } = await client
   .eq('discord_username', route.params.id)
   .order('season')
 
-const seasons = []
+const seasons = [[]]
 playerData.forEach((seasonalData) => seasons.push({label: `Season ${seasonalData.season}`, click: () => {currentSelectedSeason.value = `${seasonalData.season}`}});
 // const seasons = [
 // [{
