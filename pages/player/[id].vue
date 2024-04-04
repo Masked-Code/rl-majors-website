@@ -22,9 +22,6 @@ import PlaytylePieChart from '~/components/PlaystylePieChart.vue'
 import TeamRankingLineChart from '~/components/TeamRankingLineChart.vue'
 const client = useSupabaseClient()
 const route = useRoute()
-definePageMeta({
-  middleware: 'auth'
-})
 const user = useSupabaseUser()
 const { data: playerData, error: playerDataError } = await client
   .from('Player_Data')
