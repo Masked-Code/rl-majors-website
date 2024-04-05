@@ -41,7 +41,6 @@ const { data: playerData, error: playerDataError } = await client
   .select('')
   .eq('discord_username', route.params.id)
   .order('season')
-if(playerData && !playerDataError) {
 let currentSelectedSeason = ref(playerData[playerData.length-1].season)
 const seasons = []
 const seasonslist = []
@@ -52,10 +51,6 @@ playerData.forEach((seasonalData) => seasonslist.push(
   }
 ));
 seasons.push(seasonslist)
-} else {
-  let currentSelectedSeason = ref(0)
-  const seasons = []
-}
 </script>
 
 <style>
