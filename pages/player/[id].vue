@@ -18,12 +18,6 @@
         {{ playerData.find((seasonalPlayerDataThingy) => seasonalPlayerDataThingy.season == currentSelectedSeason) }}
       </div>
     </div>
-    <div v-if="!playerData && playerDataError">
-      {{ playerDataError }}
-    </div>
-    <div v-if="!playerData && !playerDataError">
-      Loading...
-    </div>
     <div v-else>
       Error
     </div>
