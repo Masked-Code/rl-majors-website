@@ -2,14 +2,14 @@
   <UCard class="rounded-2xl ml-[10%] mr-[10%] min-h-96">
     <div class="flex flex-col place-items-center">
       <h1 class="text-4xl font-bold m-1 mb-5">Getting Started</h1>
-      <UCard class="flex flex-col place-items-center m-3 w-[50%] text-center">
+      <UCard class="flex flex-col place-items-center m-3 w-[65%] text-center">
         <template #header>
           <b class="text-xl">Step 1: Login With Discord</b>
         </template>
         <div v-if="user">✅ You are already logged in!</div>
         <div v-else><UButton @click="signInWithDiscord" class="m-2" size="lg"><b>Login With Discord</b></UButton></div>
       </UCard>
-      <UCard class="flex flex-col place-items-center m-3 w-[50%] text-center">
+      <UCard class="flex flex-col place-items-center m-3 w-[65%] text-center">
         <template #header>
           <b class="text-xl">Step 2: Join The Discord</b>
         </template>
@@ -21,7 +21,7 @@
         Join Discord Server
         </ULink>
       </UCard>
-      <UCard class="flex flex-col place-items-center m-3 w-[50%] text-center">
+      <UCard class="flex flex-col place-items-center m-3 w-[65%] text-center">
         <template #header>
           <b class="text-xl">Step 3: Read The Rules</b>
         </template>
@@ -33,39 +33,39 @@
             <b>Rules</b>
           </UButton> or in the Discord server in #rules channel.</div>
       </UCard>
-      <UCard class="flex flex-col place-items-center m-3 w-[50%] text-center">
+      <UCard class="flex flex-col place-items-center m-3 w-[65%] text-center">
         <template #header>
           <b class="text-xl">Step 4: Obtain Your Roles</b>
         </template>
         <div>Roles can be obtained by reacting to the messages in the #set-roles channel.</div>
       </UCard>
-      <UCard class="flex flex-col place-items-center m-3 w-[50%] text-center">
+      <UCard class="flex flex-col place-items-center m-3 w-[65%] text-center">
         <template #header>
           <b class="text-xl">Step 5: Register</b>
         </template>
         <div class="mb-4">Using the RL Majors Discord bot slash commands, you can use the /register command to sign up for the current or next season depending on the time left in the current season.</div>
         <UAccordion :items="items" />
       </UCard>
-      <UCard class="flex flex-col place-items-center m-3 w-[50%] text-center">
+      <UCard class="flex flex-col place-items-center m-3 w-[65%] text-center">
         <template #header>
           <b class="text-xl">Step 6: Get Your Price</b>
         </template>
         <div>This is a manual process conducted by the management and administrative roles with in the Discord. There is no action required fom you on this step.</div>
       </UCard>
-      <UCard class="flex flex-col place-items-center m-3 w-[50%] text-center">
+      <UCard class="flex flex-col place-items-center m-3 w-[65%] text-center">
         <template #header>
           <b class="text-xl">Step 7: Tryout (Optional)</b>
         </template>
         <div>Most team captains and franchise owners prefer to view a player's potential players in action before picking them up. This is your chance to show off your skills and abilities. You can view the tryout channels by obtaining the tryouts role in the #set-roles channel. Communication is key to make it to a tryout.</div>
       </UCard>
-      <UCard class="flex flex-col place-items-center m-3 w-[50%] text-center">
+      <UCard class="flex flex-col place-items-center m-3 w-[65%] text-center">
         <template #header>
           <b class="text-xl">Step 8: Get Drafted Or Traded Onto A Team</b>
         </template>
         <div class="mb-4">There are two different ways to make it onto a team. If it is currnetly in the off season, please make sure you are registed so you are able to be drafted.</div>
         <UAccordion :items="joinItems" />
       </UCard>
-      <UCard class="flex flex-col place-items-center m-3 w-[50%] text-center">
+      <UCard class="flex flex-col place-items-center m-3 w-[65%] text-center">
         <template #header>
           <b class="text-xl">Step 9: Play!</b>
         </template>
