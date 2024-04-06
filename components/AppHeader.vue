@@ -5,6 +5,7 @@
                 <UButton color="primary" variant="link" to="/" class="text-3xl">RL Majors</UButton>
             </div>
             <div class="justify-self-center">
+                <UButton size="xl" class="rounded-2xl m-1" to="/gettingstarted">Getting Started</UButton>
                 <UButton size="xl" class="rounded-2xl m-1" to="/leaderboards">Leaderboards</UButton>
                 <UButton size="xl" class="rounded-2xl m-1" to="/search">Player</UButton>
                 <UButton size="xl" class="rounded-2xl m-1" to="/prices">Prices</UButton>

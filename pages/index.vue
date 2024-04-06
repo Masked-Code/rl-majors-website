@@ -9,7 +9,7 @@
           <div class="flex text-2xl font-bold text-center m-1 text-green-600">Prize Money</div>
         </template>
         <div class="flex flex-row text-center">
-          <div>Dedicated prize pools for every skill division! Scaling winnings for 3rd, 2nd, and 1st place! Fast grab $$$ opportunities! Sponsor, Leader, and Community funnded prize pools that are constantly growing!</div>
+          <div>Dedicated prize pools for every skill division! Scaling winnings for 3rd, 2nd, and 1st place! Fast grab $$$ opportunities! Sponsor, Leader, and Community funded prize pools that are constantly growing!</div>
         </div>
       </UCard>
       <UCard class="flex flex-col m-3 max-w-[22%] place-items-center rounded-2xl">
