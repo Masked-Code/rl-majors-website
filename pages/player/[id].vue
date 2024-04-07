@@ -37,45 +37,43 @@
         </div>
       </div>
       <UDivider></UDivider>
-      <UDropdown :items="seasons" :popper="{ placement: 'bottom-start' }">
-        <UButton color="primary" trailing-icon="i-heroicons-chevron-down-20-solid" class="m-2" size="md" >
-          Season {{ currentSelectedSeason }}
-        </UButton>
-      </UDropdown>
+        <UDropdown :items="seasons" :popper="{ placement: 'bottom-start' }" class="mt-2">
+          <UButton color="primary" trailing-icon="i-heroicons-chevron-down-20-solid" class="m-2" size="md" >
+            Season {{ currentSelectedSeason }}
+          </UButton>
+        </UDropdown>
+        <UTabs :items="tabs" class="m-4">
+          <template #default="{ item, index, selected }">
+            <div class="flex items-center gap-2 relative truncate">
+              <UIcon :name="item.icon" class="w-5 h-10 flex-shrink-0" />
+              <span class="truncate">{{ item.label }}</span>
+            </div>
+          </template>
+        </UTabs>
       <div v-if="playerDataError">
         Error loading player data
       </div>
       <div v-else>
-        <div>
-          Discord Information
-          <UCard>{{ currentSelectedSeasonalPlayerData.discord_id }}</UCard>
-          <UCard>{{ currentSelectedSeasonalPlayerData.discord_id }}</UCard>
-          <UCard>{{ currentSelectedSeasonalPlayerData.discord_username }}</UCard>
+        <div class="flex flex-row">
+          <UCard class="m-4 flex flex-grow">
+            Discord Info
+            <div>Discord ID: {{ currentSelectedSeasonalPlayerData.discord_id }}</div>
+            <div>Discord Username: {{ currentSelectedSeasonalPlayerData.discord_username }}</div>
+          </UCard>
+          <UCard class="m-4 flex flex-grow">
+            Rocket League Info
+            <div>Platform: {{ currentSelectedSeasonalPlayerData.platform }}</div>
+            <div>Platform ID: {{ currentSelectedSeasonalPlayerData.platform_id }}</div>
+          </UCard>
         </div>
         <UDivider></UDivider>
-        <div>
-          Rocket League Information
-          <UCard>{{ currentSelectedSeasonalPlayerData.platform }}</UCard>
-          <UCard>{{ currentSelectedSeasonalPlayerData.platform_id }}</UCard>
-        </div>
-        <UDivider></UDivider>
-        <div>
-          RL Majors Information
-          <UCard>{{ currentSelectedSeasonalPlayerData.display_name }}</UCard>
-          <UCard>{{ currentSelectedSeasonalPlayerData.seasonal_stats }}</UCard>
-          <UCard>{{ currentSelectedSeasonalPlayerData.tags }}</UCard>
-          <UCard>{{ currentSelectedSeasonalPlayerData.season }}</UCard>
-          <UCard>{{ currentSelectedSeasonalPlayerData.division }}</UCard>
-          <UCard>{{ currentSelectedSeasonalPlayerData.price }}</UCard>
-          <UCard>{{ currentSelectedSeasonalPlayerData.team_uuid }}</UCard>
-        </div>
-        <UDivider></UDivider>
-        <div>
-          Other Information
-          <UCard>{{ currentSelectedSeasonalPlayerData.tracker_link }}</UCard>
-          <UCard>{{ currentSelectedSeasonalPlayerData.bc_link }}</UCard>
-          <UCard>{{ currentSelectedSeasonalPlayerData.id }}</UCard>
-        </div>
+        <UCard class="m-4">
+          RL Majors info
+          <div>Display Name: {{ currentSelectedSeasonalPlayerData.display_name }}</div>
+          <div>Seasonal Stats: {{ currentSelectedSeasonalPlayerData.seasonal_stats }}</div>
+          <div>Tags: {{ currentSelectedSeasonalPlayerData.tags }}</div>
+          <div>Team ID: {{ currentSelectedSeasonalPlayerData.team_uuid }}</div>
+        </UCard>
       </div>
     </div>
     <div v-else>
@@ -107,6 +105,22 @@ seasons.push(seasonslist)
 const currentSelectedSeasonalPlayerData = computed(() => {
   return playerData.find((seasonalPlayerDataThingy) => seasonalPlayerDataThingy.season == currentSelectedSeason.value)
 })
+const tabs = [{
+  key: 'overview',
+  label: 'Overview',
+  icon: 'i-heroicons-view-columns',
+  description: 'View player overview.'
+}, {
+  key: 'analytics',
+  label: 'Analytics',
+  icon: 'i-heroicons-chart-bar',
+  description: 'View analytics here.'
+}, {
+  key: 'matches',
+  label: 'Recent Matches',
+  icon: 'i-heroicons-list-bullet',
+  description: 'View recent matches.'
+}]
 </script>
 
 <style>
