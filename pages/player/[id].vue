@@ -4,14 +4,14 @@
       <div class="flex flex-flow justify-between">
         <div class="flex flex-row">
           <img src="~/assets/RLMajors_logo_Big.png" class="rounded-2xl max-w-48">
-          <div class="flex flex-col justify-center">
-            <div class="flex flex-row">
-              <h1 v-if="playerData[0].display_name" class="m-2 ml-6 text-4xl">{{ playerData[playerData.length - 1].display_name }}</h1>
-              <h1 v-else class="m-2 text-4xl">{{ playerData[playerData.length - 1].discord_username }}</h1>
+          <div class="flex flex-col justify-center ml-2">
+            <div class="">
+              <h1 v-if="currentSelectedSeasonalPlayerData.display_name" class="m-2 text-4xl">{{ currentSelectedSeasonalPlayerData.display_name}}</h1>
+              <h1 v-else class="m-2 text-4xl">{{ currentSelectedSeasonalPlayerData.discord_username }}</h1>
             </div>
-            <div class="flex place-self-end">
-              <h1 class="m-2 ml-6 text-2xl">Div {{  playerData[playerData.length - 1].division  }}</h1>
-              <h1 class="m-2 ml-6 text-2xl">Price {{ playerData[playerData.length - 1].price }}</h1>
+            <div class="flex flex-row">
+              <h1 class="m-2 text-2xl">Div {{  currentSelectedSeasonalPlayerData.division  }}</h1>
+              <h1 class="m-2 text-2xl">Price {{ currentSelectedSeasonalPlayerData.price }}</h1>
             </div>
           </div>
         </div>
