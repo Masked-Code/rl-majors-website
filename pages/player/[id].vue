@@ -49,32 +49,47 @@
               <span class="truncate">{{ item.label }}</span>
             </div>
           </template>
+          <template #item="{ item }">
+            <div v-if="item.key === 'overview'">
+              <div v-if="playerDataError">
+              Error loading player data
+            </div>
+            <div v-else>
+              <div class="flex flex-row">
+                <div class="flex flex-col flex-grow">
+                  <UCard class="m-4 flex flex-grow">
+                  <div>Discord ID: {{ currentSelectedSeasonalPlayerData.discord_id }}</div>
+                  <div>Discord Username: {{ currentSelectedSeasonalPlayerData.discord_username }}</div>
+                </UCard>
+                <UCard class="m-4 flex flex-grow">
+                  <div>Platform: {{ currentSelectedSeasonalPlayerData.platform }}</div>
+                  <div>Platform ID: {{ currentSelectedSeasonalPlayerData.platform_id }}</div>
+                </UCard>
+                </div>
+                <UCard class="m-4 flex">
+                  Recent Matches Coming Soon
+                </UCard>
+              </div>
+            </div>
+            </div>
+            <div v-if="item.key === 'analytics'">
+              <div v-if="playerDataError">
+              Error loading player data
+            </div>
+            <div v-else>
+              <UCard class="m-4">
+                <div>Display Name: {{ currentSelectedSeasonalPlayerData.display_name }}</div>
+                <div>Seasonal Stats: {{ currentSelectedSeasonalPlayerData.seasonal_stats }}</div>
+                <div>Tags: {{ currentSelectedSeasonalPlayerData.tags }}</div>
+                <div>Team ID: {{ currentSelectedSeasonalPlayerData.team_uuid }}</div>
+              </UCard>
+            </div>
+            </div>
+            <div v-if="item.key === 'matches'">
+              Coming Soon
+            </div>
+          </template>
         </UTabs>
-      <div v-if="playerDataError">
-        Error loading player data
-      </div>
-      <div v-else>
-        <div class="flex flex-row">
-          <UCard class="m-4 flex flex-grow">
-            Discord Info
-            <div>Discord ID: {{ currentSelectedSeasonalPlayerData.discord_id }}</div>
-            <div>Discord Username: {{ currentSelectedSeasonalPlayerData.discord_username }}</div>
-          </UCard>
-          <UCard class="m-4 flex flex-grow">
-            Rocket League Info
-            <div>Platform: {{ currentSelectedSeasonalPlayerData.platform }}</div>
-            <div>Platform ID: {{ currentSelectedSeasonalPlayerData.platform_id }}</div>
-          </UCard>
-        </div>
-        <UDivider></UDivider>
-        <UCard class="m-4">
-          RL Majors info
-          <div>Display Name: {{ currentSelectedSeasonalPlayerData.display_name }}</div>
-          <div>Seasonal Stats: {{ currentSelectedSeasonalPlayerData.seasonal_stats }}</div>
-          <div>Tags: {{ currentSelectedSeasonalPlayerData.tags }}</div>
-          <div>Team ID: {{ currentSelectedSeasonalPlayerData.team_uuid }}</div>
-        </UCard>
-      </div>
     </div>
     <div v-else>
       Error
