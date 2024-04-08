@@ -45,8 +45,8 @@
         <UTabs :items="tabs" class="m-4">
           <template #default="{ item, index, selected }">
             <div class="flex items-center gap-2 relative truncate">
-              <UIcon :name="item.icon" class="w-5 h-10 flex-shrink-0" />
-              <span class="truncate">{{ item.label }}</span>
+              <UIcon :name="item.icon" class="w-6 h-6 flex-shrink-0 text-primary" />
+              <span class="truncate text-lg text-primary">{{ item.label }}</span>
             </div>
           </template>
           <template #item="{ item }">
@@ -57,14 +57,23 @@
             <div v-else>
               <div class="flex flex-row">
                 <div class="flex flex-col flex-grow">
-                  <UCard class="m-4 flex flex-grow">
-                  <div>Discord ID: {{ currentSelectedSeasonalPlayerData.discord_id }}</div>
-                  <div>Discord Username: {{ currentSelectedSeasonalPlayerData.discord_username }}</div>
-                </UCard>
-                <UCard class="m-4 flex flex-grow">
-                  <div>Platform: {{ currentSelectedSeasonalPlayerData.platform }}</div>
-                  <div>Platform ID: {{ currentSelectedSeasonalPlayerData.platform_id }}</div>
-                </UCard>
+                  <UCard class="m-4 flex-grow">
+                    <div class="flex flex-row justify-center">
+                      <div class="m-4 flex flex-col justify-center">
+                        <img src="~/assets/discord-mark-blue.png" class="rounded-2xl max-w-24">
+                      </div>
+                    <div class="m-4 flex flex-col justify-center">
+                      <div>Discord ID: {{ currentSelectedSeasonalPlayerData.discord_id }}</div>
+                      <div>Discord Username: {{ currentSelectedSeasonalPlayerData.discord_username }}</div>
+                      <div>Display Name: {{ currentSelectedSeasonalPlayerData.display_name }}</div>
+                      <div>Tags: {{ currentSelectedSeasonalPlayerData.tags }}</div>
+                    </div>
+                    <div class="m-4 flex flex-col justify-center">
+                      <div>Platform: {{ currentSelectedSeasonalPlayerData.platform }}</div>
+                      <div>Platform ID: {{ currentSelectedSeasonalPlayerData.platform_id }}</div>
+                    </div>
+                    </div>
+                  </UCard>
                 </div>
                 <UCard class="m-4 flex">
                   Recent Matches Coming Soon
@@ -78,11 +87,26 @@
             </div>
             <div v-else>
               <UCard class="m-4">
-                <div>Display Name: {{ currentSelectedSeasonalPlayerData.display_name }}</div>
                 <div>Seasonal Stats: {{ currentSelectedSeasonalPlayerData.seasonal_stats }}</div>
-                <div>Tags: {{ currentSelectedSeasonalPlayerData.tags }}</div>
-                <div>Team ID: {{ currentSelectedSeasonalPlayerData.team_uuid }}</div>
               </UCard>
+              <UCard class="m-4">
+                <div>Games Played: {{ currentSelectedSeasonalPlayerData.seasonal_stats.games.played }}</div>
+                <div>Wins: {{ currentSelectedSeasonalPlayerData.seasonal_stats.games.won }}</div>
+                <div>Losses: {{ currentSelectedSeasonalPlayerData.seasonal_stats.games.lost }}</div>
+                <div>Win Rate: {{ currentSelectedSeasonalPlayerData.seasonal_stats.games.won / currentSelectedSeasonalPlayerData.seasonal_stats.games.played * 100 }}%</div>
+                <div>Overtime Rate: {{ currentSelectedSeasonalPlayerData.seasonal_stats.games.overtimes / currentSelectedSeasonalPlayerData.seasonal_stats.games.played * 100 }}%</div>
+                <div>Forfeit Rate: {{ currentSelectedSeasonalPlayerData.seasonal_stats.games.overtimes / currentSelectedSeasonalPlayerData.seasonal_stats.games.played * 100 }}%</div>
+              </UCard>
+              <UCard class="m-4">
+                <div>Total Shots: {{ currentSelectedSeasonalPlayerData.seasonal_stats.core.shots }}</div>
+                <div>Total Shots Against: {{ currentSelectedSeasonalPlayerData.seasonal_stats.core.shots_against }}</div>
+                <div>Total Goals: {{ currentSelectedSeasonalPlayerData.seasonal_stats.core.goals }}</div>
+                <div>Total Goals Against: {{ currentSelectedSeasonalPlayerData.seasonal_stats.core.goals_against }}</div>
+                <div>Total Saves: {{ currentSelectedSeasonalPlayerData.seasonal_stats.core.saves }}</div>
+                <div>Total Assists: {{ currentSelectedSeasonalPlayerData.seasonal_stats.core.assists }}</div>
+                <div>Total Score: {{ currentSelectedSeasonalPlayerData.seasonal_stats.core.score }}</div>
+                <div>Total MVPs: {{ currentSelectedSeasonalPlayerData.seasonal_stats.core.mvp }}</div>
+              </UCard> 
             </div>
             </div>
             <div v-if="item.key === 'matches'">
