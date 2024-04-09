@@ -9,7 +9,7 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      Player_Data: {
+      Player_Dataz: {
         Row: {
           bc_link: string | null
           created_at: string
@@ -63,10 +63,10 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "public_Player_Data_team_uuid_fkey"
+            foreignKeyName: "public_Player_Dataz_team_uuid_fkey"
             columns: ["team_uuid"]
             isOneToOne: false
-            referencedRelation: "Team_Data"
+            referencedRelation: "Team_Dataz"
             referencedColumns: ["id"]
           },
         ]
@@ -236,7 +236,7 @@ export type Database = {
         }
         Relationships: []
       }
-      Team_Data: {
+      Team_Dataz: {
         Row: {
           created_at: string
           division: number | null

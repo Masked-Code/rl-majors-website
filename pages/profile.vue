@@ -37,7 +37,7 @@ const supabase = useSupabaseClient()
 const authUser = useSupabaseUser()
 const { data: { user } } = await supabase.auth.getUser()
 const { data: userData, error: userDataError } = await supabase
-  .from('Player_Data')
+  .from('Player_Dataz')
   .select('')
   .eq('discord_id', user.user_metadata.provider_id)
   .limit(1)

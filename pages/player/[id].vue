@@ -127,7 +127,7 @@ import TeamRankingLineChart from '~/components/TeamRankingLineChart.vue'
 const client = useSupabaseClient()
 const route = useRoute()
 const { data: playerData, error: playerDataError } = await client
-  .from('Player_Data')
+  .from('Player_Dataz')
   .select('')
   .eq('discord_username', route.params.id)
   .order('season')

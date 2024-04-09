@@ -28,7 +28,7 @@
 const route = useRoute()
 const client = useSupabaseClient()
 const { data: players } = await client
-    .from('Player_Data')
+    .from('Player_Dataz')
     .select('*')
     .order('season')
     .order('division')
