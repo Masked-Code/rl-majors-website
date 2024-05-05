@@ -24,12 +24,12 @@
     </UCard>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 const route = useRoute()
 const client = useSupabaseClient()
 const { data: players } = await client
-    .from('Player_Dataz')
-    .select('*')
+    .from('Players')
+    .select('discord_username')
     .order('season')
     .order('division')
     .order('price')

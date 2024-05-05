@@ -6,12 +6,8 @@
           <img src="~/assets/RLMajors_logo_Big.png" class="rounded-2xl max-w-48">
           <div class="flex flex-col justify-center ml-2">
             <div class="">
-              <h1 v-if="currentSelectedSeasonalPlayerData.display_name" class="m-2 text-4xl">{{ currentSelectedSeasonalPlayerData.display_name}}</h1>
-              <h1 v-else class="m-2 text-4xl">{{ currentSelectedSeasonalPlayerData.discord_username }}</h1>
             </div>
             <div class="flex flex-row">
-              <h1 class="m-2 text-2xl">Div {{  currentSelectedSeasonalPlayerData.division  }}</h1>
-              <h1 class="m-2 text-2xl">Price {{ currentSelectedSeasonalPlayerData.price }}</h1>
             </div>
           </div>
         </div>
@@ -63,14 +59,8 @@
                         <img src="~/assets/discord-mark-blue.png" class="rounded-2xl max-w-24">
                       </div>
                     <div class="m-4 flex flex-col justify-center">
-                      <div>Discord ID: {{ currentSelectedSeasonalPlayerData.discord_id }}</div>
-                      <div>Discord Username: {{ currentSelectedSeasonalPlayerData.discord_username }}</div>
-                      <div>Display Name: {{ currentSelectedSeasonalPlayerData.display_name }}</div>
-                      <div>Tags: {{ currentSelectedSeasonalPlayerData.tags }}</div>
                     </div>
                     <div class="m-4 flex flex-col justify-center">
-                      <div>Platform: {{ currentSelectedSeasonalPlayerData.platform }}</div>
-                      <div>Platform ID: {{ currentSelectedSeasonalPlayerData.platform_id }}</div>
                     </div>
                     </div>
                   </UCard>
@@ -87,25 +77,10 @@
             </div>
             <div v-else>
               <UCard class="m-4">
-                <div>Seasonal Stats: {{ currentSelectedSeasonalPlayerData.seasonal_stats }}</div>
               </UCard>
               <UCard class="m-4">
-                <div>Games Played: {{ currentSelectedSeasonalPlayerData.seasonal_stats.games.played }}</div>
-                <div>Wins: {{ currentSelectedSeasonalPlayerData.seasonal_stats.games.won }}</div>
-                <div>Losses: {{ currentSelectedSeasonalPlayerData.seasonal_stats.games.lost }}</div>
-                <div>Win Rate: {{ currentSelectedSeasonalPlayerData.seasonal_stats.games.won / currentSelectedSeasonalPlayerData.seasonal_stats.games.played * 100 }}%</div>
-                <div>Overtime Rate: {{ currentSelectedSeasonalPlayerData.seasonal_stats.games.overtimes / currentSelectedSeasonalPlayerData.seasonal_stats.games.played * 100 }}%</div>
-                <div>Forfeit Rate: {{ currentSelectedSeasonalPlayerData.seasonal_stats.games.overtimes / currentSelectedSeasonalPlayerData.seasonal_stats.games.played * 100 }}%</div>
               </UCard>
               <UCard class="m-4">
-                <div>Total Shots: {{ currentSelectedSeasonalPlayerData.seasonal_stats.core.shots }}</div>
-                <div>Total Shots Against: {{ currentSelectedSeasonalPlayerData.seasonal_stats.core.shots_against }}</div>
-                <div>Total Goals: {{ currentSelectedSeasonalPlayerData.seasonal_stats.core.goals }}</div>
-                <div>Total Goals Against: {{ currentSelectedSeasonalPlayerData.seasonal_stats.core.goals_against }}</div>
-                <div>Total Saves: {{ currentSelectedSeasonalPlayerData.seasonal_stats.core.saves }}</div>
-                <div>Total Assists: {{ currentSelectedSeasonalPlayerData.seasonal_stats.core.assists }}</div>
-                <div>Total Score: {{ currentSelectedSeasonalPlayerData.seasonal_stats.core.score }}</div>
-                <div>Total MVPs: {{ currentSelectedSeasonalPlayerData.seasonal_stats.core.mvp }}</div>
               </UCard> 
             </div>
             </div>
@@ -126,23 +101,56 @@ import PlaytylePieChart from '~/components/PlaystylePieChart.vue'
 import TeamRankingLineChart from '~/components/TeamRankingLineChart.vue'
 const client = useSupabaseClient()
 const route = useRoute()
-const { data: playerData, error: playerDataError } = await client
-  .from('Player_Dataz')
-  .select('')
-  .eq('discord_username', route.params.id)
-  .order('season')
-const currentSelectedSeason = ref(playerData[playerData.length-1].season)
-const seasons = []
-const seasonslist = []
-playerData.forEach((seasonalData) => seasonslist.push(
-  {
-    label: `Season ${seasonalData.season}`, 
-    click: () => {currentSelectedSeason.value = seasonalData.season}
-  }
-));
-seasons.push(seasonslist)
-const currentSelectedSeasonalPlayerData = computed(() => {
-  return playerData.find((seasonalPlayerDataThingy) => seasonalPlayerDataThingy.season == currentSelectedSeason.value)
+const player = ref()
+const playerData = ref()
+
+// const {data: player, error: playerError} = await client
+//   .from('Players')
+//   .select('*')
+//   .eq('discord_username', route.params.id)
+// const { data: playerData, error: playerDataError } = await client
+//   .from('Player_Data')
+//   .select('*')
+//   .eq('player_uuid', player[0].uuid)
+//   .order('season')
+// const currentSelectedSeason = ref(player[player.length-1].season)
+// const seasons = []
+// const seasonslist = []
+// playerData.forEach((seasonalData) => seasonslist.push(
+//   {
+//     label: `Season ${seasonalData.season}`, 
+//     click: () => {currentSelectedSeason.value = seasonalData.season}
+//   }
+// ));
+// seasons.push(seasonslist)
+// const currentSelectedSeasonalPlayerData = computed(() => {
+//   return playerData.find((seasonalPlayerDataThingy) => seasonalPlayerDataThingy.season == currentSelectedSeason.value)
+// })
+
+//When the page loads pull the rows from Players that match the discord_username in the URL and store it in the player variable as an array of objects then for each of the uuids in the player array pull the rows from Player_Data that match the player_uuid in the player array and store it in the playerData variable as an array of objects
+onMounted(async () => {
+  const { data: player, error: playerError } = await client
+    .from('Players')
+    .select('*')
+    .eq('discord_username', route.params.id)
+  const { data: playerData, error: playerDataError } = await client
+    .from('Player_Data')
+    .select('*')
+    .eq('player_uuid', player[0].uuid)
+    .order('season')
+  const currentSelectedSeason = ref(player[player.length-1].season)
+  const seasons = []
+  const seasonslist = []
+  playerData.forEach((seasonalData) => seasonslist.push(
+    {
+      label: `Season ${seasonalData.season}`, 
+      click: () => {currentSelectedSeason.value = seasonalData.season}
+    }
+  ));
+  seasons.push(seasonslist)
+  const currentSelectedSeasonalPlayerData = computed(() => {
+    return playerData.find((seasonalPlayerDataThingy) => seasonalPlayerDataThingy.season == currentSelectedSeason.value)
+  })
 })
 const tabs = [{
   key: 'overview',
