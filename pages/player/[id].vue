@@ -1,6 +1,6 @@
 <template>
   <UCard class="rounded-2xl ml-[10%] mr-[10%] min-h-96">
-    <div v-if="playerData">
+    <div v-if="allPlayerData">
       <div class="flex flex-flow justify-between">
         <div class="flex flex-row">
           <img src="~/assets/RLMajors_logo_Big.png" class="rounded-2xl max-w-48">
@@ -13,22 +13,6 @@
         </div>
         <div class="flex flex-row">
           <div class="place-self-center m-2 text-lg">
-            <UButton
-              icon="i-heroicons-arrow-top-right-on-square"
-              :to="currentSelectedSeasonalPlayerData.tracker_link"
-              target="_blank"
-              class="text-primary m-2 text-lg"
-              variant="link"
-              trailing
-            >TRN Tracker</UButton>
-            <UButton
-              icon="i-heroicons-arrow-top-right-on-square"
-              :to="currentSelectedSeasonalPlayerData.bc_link"
-              target="_blank"
-              class="text-primary m-2 text-lg"
-              variant="link"
-              trailing
-            >Ballchasing Profile</UButton>
           </div>
         </div>
       </div>
@@ -101,55 +85,47 @@ import PlaytylePieChart from '~/components/PlaystylePieChart.vue'
 import TeamRankingLineChart from '~/components/TeamRankingLineChart.vue'
 const client = useSupabaseClient()
 const route = useRoute()
-const player = ref()
-const playerData = ref()
-
-// const {data: player, error: playerError} = await client
-//   .from('Players')
-//   .select('*')
-//   .eq('discord_username', route.params.id)
-// const { data: playerData, error: playerDataError } = await client
-//   .from('Player_Data')
-//   .select('*')
-//   .eq('player_uuid', player[0].uuid)
-//   .order('season')
-// const currentSelectedSeason = ref(player[player.length-1].season)
-// const seasons = []
-// const seasonslist = []
-// playerData.forEach((seasonalData) => seasonslist.push(
-//   {
-//     label: `Season ${seasonalData.season}`, 
-//     click: () => {currentSelectedSeason.value = seasonalData.season}
-//   }
-// ));
-// seasons.push(seasonslist)
-// const currentSelectedSeasonalPlayerData = computed(() => {
-//   return playerData.find((seasonalPlayerDataThingy) => seasonalPlayerDataThingy.season == currentSelectedSeason.value)
-// })
-
-//When the page loads pull the rows from Players that match the discord_username in the URL and store it in the player variable as an array of objects then for each of the uuids in the player array pull the rows from Player_Data that match the player_uuid in the player array and store it in the playerData variable as an array of objects
+const allPlayerData = []
+let currentSelectedSeasonalPlayer = ref()
 onMounted(async () => {
   const { data: player, error: playerError } = await client
     .from('Players')
     .select('*')
     .eq('discord_username', route.params.id)
-  const { data: playerData, error: playerDataError } = await client
-    .from('Player_Data')
-    .select('*')
-    .eq('player_uuid', player[0].uuid)
     .order('season')
+  if(player) {
+    console.log(player)
+  }
+  if (playerError) {
+    console.error(playerError);
+  }
+  player.forEach(async (foundPlayer) =>{
+    const { data: playerData, error: playerDataError } = await client
+      .from('Player_Stats')
+      .select('*')
+      .eq('player_uuid', foundPlayer.uuid)
+      .order('season')
+    if(playerData) {
+      allPlayerData.push(playerData);
+    }
+    if (playerDataError) {
+      console.error(playerDataError);
+    }
+  })
   const currentSelectedSeason = ref(player[player.length-1].season)
   const seasons = []
   const seasonslist = []
-  playerData.forEach((seasonalData) => seasonslist.push(
+  console.log(allPlayerData)
+  player.forEach((seasonalData) => seasonslist.push(
     {
       label: `Season ${seasonalData.season}`, 
       click: () => {currentSelectedSeason.value = seasonalData.season}
     }
   ));
   seasons.push(seasonslist)
-  const currentSelectedSeasonalPlayerData = computed(() => {
-    return playerData.find((seasonalPlayerDataThingy) => seasonalPlayerDataThingy.season == currentSelectedSeason.value)
+  currentSelectedSeasonalPlayer.value = computed(() => {
+    console.log("test", player.find((foundPlayer) => foundPlayer.season == currentSelectedSeason.value))
+    return player.find((foundPlayer) => foundPlayer.season == currentSelectedSeason.value)
   })
 })
 const tabs = [{
