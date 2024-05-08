@@ -64,10 +64,7 @@
                         </div>
                         <div class="m-2">
                           <div v-for="(value, name, index) in currentSelectedPlayerData">
-                            <UCard>
-                              <template #header>
-                                {{ name }}
-                              </template>
+                            <UCard class="m-2">
                               <div>
                                {{ name }}: {{ value }}
                               </div>
