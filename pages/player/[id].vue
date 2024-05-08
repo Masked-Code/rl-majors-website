@@ -1,26 +1,20 @@
 <template>
   <UCard class="rounded-2xl ml-[10%] mr-[10%] min-h-96">
-    <div class="m-2">
-      player: {{ currentSelectedPlayer }}
-    </div>
-    <div class="m-2">
-      playerData: {{ currentSelectedPlayerData }}
-    </div>
     <div>
       <div class="flex flex-flow justify-between">
         <div class="flex flex-row">
           <img src="~/assets/RLMajors_logo_Big.png" class="rounded-2xl max-w-48">
-          <div class="flex flex-col justify-center ml-2">
-            <div class="">
-            </div>
-            <div class="flex flex-row">
-            </div>
+          <div class="flex flex-col justify-center ml-4">
+            <div class="text-3xl font-bold m-1">{{ currentSelectedPlayer.discord_username }}</div>
+            <div class="text-xl m-1">Div: {{ currentSelectedPlayer.division }}</div>
+            <div class="text-xl m-1">Price: {{ currentSelectedPlayer.price }}</div>
           </div>
         </div>
         <div class="flex flex-row">
           <div class="place-self-center m-2 text-lg">
             <UButton
               icon="i-heroicons-arrow-top-right-on-square"
+              :to="currentSelectedPlayer.tracker_link"
               target="_blank"
               class="text-primary m-2 text-lg"
               variant="link"
@@ -28,6 +22,7 @@
             >TRN Tracker</UButton>
             <UButton
               icon="i-heroicons-arrow-top-right-on-square"
+              :to="currentSelectedPlayer.ballchasing_link"
               target="_blank"
               class="text-primary m-2 text-lg"
               variant="link"
@@ -55,8 +50,15 @@
               <div class="flex flex-row">
                 <div class="flex flex-col flex-grow">
                   <UCard class="m-4 flex-grow">
-                    Overview Coming Soon
                     <div class="flex flex-row justify-center">
+                      <div>
+                        <div class="m-2">
+                          player: {{ currentSelectedPlayer }}
+                        </div>
+                        <div class="m-2">
+                          playerData: {{ currentSelectedPlayerData }}
+                        </div>
+                      </div>
                       <div class="m-4 flex flex-col justify-center">
                         <img src="~/assets/discord-mark-blue.png" class="rounded-2xl max-w-24">
                       </div>
