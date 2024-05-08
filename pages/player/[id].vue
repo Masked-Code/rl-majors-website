@@ -52,8 +52,30 @@
                   <UCard class="m-4 flex-grow">
                     <div class="flex flex-row justify-center">
                       <div>
+                        <div class="m-2" v-if="currentSelectedPlayer.team_uuid">
+                          <UCard>
+                            <template #header>
+                              Team
+                            </template>
+                            <div>
+                             Team UUID: {{ currentSelectedPlayer.team_uuid }}
+                            </div>
+                          </UCard>
+                        </div>
                         <div class="m-2">
-                          player: {{ currentSelectedPlayer }}
+                          <div v-for="(value, name, index) in currentSelectedPlayerData">
+                            <UCard>
+                              <template #header>
+                                {{ name }}
+                              </template>
+                              <div>
+                               {{ name }}: {{ value }}
+                              </div>
+                            </UCard>
+                          </div>
+                        </div>
+                        <div class="m-2">
+                            player: {{ currentSelectedPlayer }}
                         </div>
                         <div class="m-2">
                           playerData: {{ currentSelectedPlayerData }}
