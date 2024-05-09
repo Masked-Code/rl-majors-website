@@ -5,7 +5,8 @@
         <div class="flex flex-row">
           <img src="~/assets/RLMajors_logo_Big.png" class="rounded-2xl max-w-48">
           <div class="flex flex-col justify-center ml-4">
-            <div class="text-3xl font-bold m-1">{{ currentSelectedPlayer.discord_username }}</div>
+            <div class="text-3xl font-bold m-1">{{ currentSelectedPlayer.display_name ? currentSelectedPlayer.display_name : currentSelectedPlayer.discord_username}}</div>
+            <div v-if="currentSelectedPlayer.display_name" class="text-xl m-1">Discord Username: {{ currentSelectedPlayer.discord_username }}</div>
             <div class="text-xl m-1">Div: {{ currentSelectedPlayer.division }}</div>
             <div class="text-xl m-1">Price: {{ currentSelectedPlayer.price }}</div>
           </div>
@@ -48,49 +49,45 @@
             <div v-if="item.key === 'overview'">
             <div>
               <div class="flex flex-row">
-                <div class="flex flex-col flex-grow">
-                  <UCard class="m-4 flex-grow">
-                    <div class="flex flex-row justify-center">
-                      <div>
-                        <div class="m-2" v-if="currentSelectedPlayer.team_uuid">
-                          <UCard>
-                            <template #header>
-                              Team
-                            </template>
-                            <div>
-                             Team UUID: {{ currentSelectedPlayer.team_uuid }}
-                            </div>
-                          </UCard>
+                <div class="m-4">
+                  <UCard class="core-card">
+                    <div class="flex flex-row">
+                      <div class="text-3xl m-4 mr-6 place-self-center"><b>Core</b></div>
+                      <div class="flex flex-row">
+                        <div class="flex flex-col place-items-center">
+                          <div class="text-lg ml-3 mr-3">Wins</div>
+                          <div class="text-2xl ml-3 mr-3">{{ currentSelectedPlayerData.wins }}</div>
                         </div>
-                        <div class="m-2">
-                          <div v-for="(value, name, index) in currentSelectedPlayerData">
-                            <UCard class="m-2">
-                              <div>
-                               {{ name }}: {{ value }}
-                              </div>
-                            </UCard>
-                          </div>
+                        <div class="flex flex-col place-items-center">
+                          <div class="text-lg ml-3 mr-3">Win%</div>
+                          <div v-if="currentSelectedPlayerData.losses == 0 && currentSelectedPlayerData.wins == 0" class="text-2xl ml-3 mr-3">-</div>
+                          <div v-if="currentSelectedPlayerData.losses == 0 && currentSelectedPlayerData.wins > 0" class="text-2xl ml-3 mr-3">100</div>
+                          <div v-if="currentSelectedPlayerData.losses > 0" class="text-2xl ml-3 mr-3">{{ ((currentSelectedPlayerData.wins / (currentSelectedPlayerData.losses + currentSelectedPlayerData.wins)) * 100).toFixed(2)}}</div>
                         </div>
-                        <div class="m-2">
-                            player: {{ currentSelectedPlayer }}
+                        <div class="flex flex-col place-items-center">
+                          <div class="text-lg ml-3 mr-3">MVPs</div>
+                          <div class="text-2xl ml-3 mr-3">{{ currentSelectedPlayerData.mvps }}</div>
                         </div>
-                        <div class="m-2">
-                          playerData: {{ currentSelectedPlayerData }}
+                        <div class="flex flex-col place-items-center">
+                          <div class="text-lg ml-3 mr-3">Goals</div>
+                          <div class="text-2xl ml-3 mr-3">{{ currentSelectedPlayerData.goals }}</div>
+                        </div>
+                        <div class="flex flex-col place-items-center">
+                          <div class="text-lg ml-3 mr-3">Assist</div>
+                          <div class="text-2xl ml-3 mr-3">{{ currentSelectedPlayerData.assists }}</div>
+                        </div>
+                        <div class="flex flex-col place-items-center">
+                          <div class="text-lg ml-3 mr-3">Shots</div>
+                          <div class="text-2xl ml-3 mr-3">{{ currentSelectedPlayerData.shots }}</div>
+                        </div>
+                        <div class="flex flex-col place-items-center">
+                          <div class="text-lg ml-3 mr-3">Saves</div>
+                          <div class="text-2xl ml-3 mr-3">{{ currentSelectedPlayerData.saves }}</div>
                         </div>
                       </div>
-                      <div class="m-4 flex flex-col justify-center">
-                        <img src="~/assets/discord-mark-blue.png" class="rounded-2xl max-w-24">
-                      </div>
-                    <div class="m-4 flex flex-col justify-center">
-                    </div>
-                    <div class="m-4 flex flex-col justify-center">
-                    </div>
                     </div>
                   </UCard>
                 </div>
-                <UCard class="m-4 flex">
-                  Recent Matches Coming Soon
-                </UCard>
               </div>
             </div>
             </div>
@@ -191,4 +188,11 @@ const tabs = [{
 </script>
 
 <style>
+.blue-gradient {
+  background: linear-gradient(to right, blue 0%, blue 25%, transparent 25%, transparent 100%);
+}
+.core-card {
+  background: radial-gradient(circle at left, #FFBF00 0%, transparent 85%);
+  border: #FFBF00;
+}
 </style>
