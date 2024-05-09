@@ -73,7 +73,7 @@
                           <div class="text-2xl ml-3 mr-3">{{ currentSelectedPlayerData.goals }}</div>
                         </div>
                         <div class="flex flex-col place-items-center">
-                          <div class="text-lg ml-3 mr-3">Assist</div>
+                          <div class="text-lg ml-3 mr-3">Assists</div>
                           <div class="text-2xl ml-3 mr-3">{{ currentSelectedPlayerData.assists }}</div>
                         </div>
                         <div class="flex flex-col place-items-center">
