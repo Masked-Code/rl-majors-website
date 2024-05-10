@@ -93,8 +93,8 @@
             </div>
             <div v-if="item.key === 'analytics'">
               <UCard class="m-6">
-                <div>
-                Analytis Coming Soon
+                <div v-for="(value, name, index) in currentSelectedPlayerData">
+                {{name}}: {{ value }}
                 </div>
               </UCard>
             <div>
