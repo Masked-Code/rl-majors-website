@@ -190,7 +190,5 @@ const tabs = [{
 <style>
 .core-card {
   background: radial-gradient(circle at left, #FFBF00 8%, transparent 20%);
-  border-style: solid;
-  border-color: #FFBF00;
 }
 </style>
