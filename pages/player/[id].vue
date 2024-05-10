@@ -188,11 +188,8 @@ const tabs = [{
 </script>
 
 <style>
-.blue-gradient {
-  background: linear-gradient(to right, blue 0%, blue 25%, transparent 25%, transparent 100%);
-}
 .core-card {
-  background: radial-gradient(circle at left, #FFBF00 0%, transparent 85%);
+  background: radial-gradient(circle at left, #FFBF00 15%, transparent 20%);
   border: #FFBF00;
 }
 </style>
