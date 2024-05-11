@@ -88,6 +88,21 @@
                     </div>
                   </UCard>
                 </div>
+                <div class="m-4">
+                  <UCard class="core-card">
+                    <div class="flex flex-row">
+                      <div class="flex flex-row text-3xl m-4 mr-6 place-self-center"><b>Tags</b></div>
+                      <div v-if="currentSelectedPlayer.tags == null">
+                        <div class="text-lg m-4">No Tags</div>
+                      </div>
+                      <div v-else class="flex flex-row flex-wrap">
+                        <div v-for="tag in currentSelectedPlayer.tags">
+                          <UBadge class="m-2 text-md font-bold" variant="subtle" size="sm">{{ tag }}</UBadge>
+                        </div>
+                      </div>
+                    </div>
+                  </UCard>
+                </div> 
               </div>
             </div>
             </div>
