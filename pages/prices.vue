@@ -9,30 +9,57 @@
         <UTable v-if="currentSelectedDivision == 'Div 1'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d1PlayerPrices || undefined" :columns="columns" class="w-full" >
           <template #discord_username-data="{row}">
             <ULink
-            :to="`/players/${row.discord_username}`"
+            :to="`/player/${row.discord_username}`"
               class="text-primary font-bold text-lg"
             >
               {{ row.discord_username }}
+            </ULink>
+          </template>
+          <template #tracker_link-data="{row}">
+            <ULink
+            :to="`${row.tracker_link}`"
+            target="_blank"
+              class="text-primary font-bold text-lg"
+            >
+              Link
             </ULink>
           </template>
         </UTable>
         <UTable v-if="currentSelectedDivision == 'Div 2'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d2PlayerPrices || undefined" :columns="columns" class="w-full" >
           <template #discord_username-data="{row}">
             <ULink
-            :to="`/players/${row.discord_username}`"
+            :to="`/player/${row.discord_username}`"
               class="text-primary font-bold text-lg"
             >
               {{ row.discord_username }}
+            </ULink>
+          </template>
+          <template #tracker_link-data="{row}">
+            <ULink
+            :to="`${row.tracker_link}`"
+            target="_blank"
+              class="text-primary font-bold text-lg"
+            >
+              Link
             </ULink>
           </template>
         </UTable>
         <UTable v-if="currentSelectedDivision == 'Div 3'" :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="d3PlayerPrices || undefined" :columns="columns" class="w-full" >
           <template #discord_username-data="{row}">
             <ULink
-            :to="`/players/${row.discord_username}`"
+            :to="`/player/${row.discord_username}`"
               class="text-primary font-bold text-lg"
             >
               {{ row.discord_username }}
+            </ULink>
+          </template>
+          <template #tracker_link-data="{row}">
+            <ULink
+            :to="`${row.tracker_link}`"
+            target="_blank"
+              class="text-primary font-bold text-lg"
+            >
+              Link
             </ULink>
           </template>
         </UTable>
@@ -40,36 +67,34 @@
   </UCard>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 let currentSelectedDivision = ref('Div 1')
 const client = useSupabaseClient()
 
 const { data: d1PlayerPrices } = await client
-  .from('S1_Player_Data')
-  .select('')
-  .gte('price', 289)
+  .from('Players')
+  .select('*')
+  .eq('division', 1)
   .order('price', { ascending: false })
-
+console.log(d1PlayerPrices)
 const { data: d2PlayerPrices } = await client
-.from('S1_Player_Data')
-.select('')
-.lte('price', 288)
-.gte('price', 238)
+.from('Players')
+.select('*')
+.eq('division', 2)
 .order('price', { ascending: false })
   
 const { data: d3PlayerPrices } = await client
-.from('S1_Player_Data')
-.select('')
-.lte('price', 237)
-.gte('price', 170)
+.from('Players')
+.select('*')
+.eq('division', 3)
 .order('price', { ascending: false })
   
 const columns = [{
   key: 'discord_username',
   label: 'Discord Username'
 }, {
-  key: 'rl_id',
-  label: 'Rocket League ID'
+  key: 'tracker_link',
+  label: 'RL Tracker'
 }, {
   key: 'price',
   label: 'Price'
