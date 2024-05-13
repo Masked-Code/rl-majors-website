@@ -22,11 +22,11 @@ const teamName = route.params.id.split(/(?=[A-Z])/).join(' ')
 
 const client = useSupabaseClient()
 
-const { data: s1TeamData } = await client
-.from('S1_Team_Data')
+const { data: TeamData } = await client
+.from('Teams')
 .select('')
 .eq('division', 1)
-.eq('team_name', teamName)
+.eq('season', 1)
 
 
 </script>
