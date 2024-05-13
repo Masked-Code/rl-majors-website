@@ -25,13 +25,13 @@
         <template #header>
           <b class="text-xl">Step 3: Read The Rules</b>
         </template>
-        <div>Rules can be found here: 
-          <UButton 
-            to="/rules" 
-            target="_blank" 
-            size="md">
-            <b>Rules</b>
-          </UButton> or in the Discord server in #rules channel.</div>
+        <div>Rules can be found here: <ULink
+          to="/rules" 
+          target="_blank" 
+          class="text-primary m-2"
+        >
+        Rules
+        </ULink> or in the Discord server in #rules channel.</div>
       </UCard>
       <UCard class="flex flex-col place-items-center m-3 w-[65%] text-center">
         <template #header>
