@@ -1,5 +1,4 @@
 <template>
-  <VideoBackground v-if="route.name == 'index'" />
   <NuxtLayout>
     <AppHeader />
     <div>
@@ -10,7 +9,8 @@
 </template>
 
 <script setup lang="ts">
-import VideoBackground from '~/components/AppVideoBackground.vue';
+// If you want to reimplement the video background: <VideoBackground v-if="route.name == 'index'" />
+//import VideoBackground from '~/components/AppVideoBackground.vue';
 const route = useRoute();
 useHead({
   title: 'RL Majors',

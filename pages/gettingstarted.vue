@@ -13,13 +13,7 @@
         <template #header>
           <b class="text-xl">Step 2: Join The Discord</b>
         </template>
-        <ULink
-          to="https://discord.com/invite/rlmajors"
-          target="_blank"
-          class="text-primary m-2"
-        >
-        Join Discord Server
-        </ULink>
+        <iframe src="https://discord.com/widget?id=1047297400416514068&theme=dark" width="700" height="350" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" class="rounded-2xl"></iframe>
       </UCard>
       <UCard class="flex flex-col place-items-center m-3 w-[65%] text-center">
         <template #header>

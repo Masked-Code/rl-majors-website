@@ -1,42 +1,43 @@
 <template>
-  <div class="flex flex-col place-items-center">
-    <div class="gradient-background mt-[6%]">
-      <h1 class="flex text-6xl m-2 p-4 text-transparent bg-clip-text bg-gradient-to-br from-yellow-400 to-amber-800 font-bold text-center">The Gold Standard For Tournaments By Rocket League Players For Rocket League Players</h1>
+  <div class="flex flex-col justify-center items-center min-h-96 m-[5%]">
+  <div
+      class="gradient-text text-8xl font-bold mb-4"
+      :style="{ animationDuration: animationDuration }"
+    >
+    ROCKET LEAGUE MAJORS
     </div>
-      <div class="flex flex-row justify-center mt-[13%]">
-      <UCard class="flex flex-col m-3 max-w-[22%] place-items-center rounded-2xl">
-        <template #header>
-          <div class="flex text-2xl font-bold text-center m-1 text-green-600">Prize Money</div>
-        </template>
-        <div class="flex flex-row text-center">
-          <div>Dedicated prize pools for every skill division! Scaling winnings for 3rd, 2nd, and 1st place! Fast grab $$$ opportunities! Sponsor, Leader, and Community funded prize pools that are constantly growing!</div>
-        </div>
-      </UCard>
-      <UCard class="flex flex-col m-3 max-w-[22%] place-items-center rounded-2xl">
-        <template #header>
-          <div class="flex text-2xl font-bold text-center m-1 text-pink-600">Skill Improvement</div>
-        </template>
-        <div class="flex flex-row text-center">
-          <div>Compete with players around and above your skill level! Queue for 6mans with anyone from the player base! Get accurate and useful analyzed data to learn from!</div>
-        </div>
-      </UCard>
-      <div class="flex flex-row m-3">
-        <iframe src="https://discord.com/widget?id=1047297400416514068&theme=dark" width="400" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" class="rounded-2xl"></iframe>
-      </div>
+    <div class="text-xl">
+      Tournaments By Rocket League Players For Rocket League Players
+    </div>
+    <div v-if="!user" class="m-4">
+      <UButton to="/gettingstarted">Get Started</UButton>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+const animationDuration = `5s`
+const user = useSupabaseUser()
 
 </script>
 
-<style>
-.gradient-background {
-  background-image: radial-gradient(circle, black, transparent);
-  padding: 20px;
+<style scoped>
+.gradient-text {
   display: inline-block;
-  overflow: visible;
-  text-align: center;
+  background: linear-gradient(90deg, #c45fff, #6750db, #6750db, #6750db, #c45fff);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: scroll-gradient linear infinite;
+}
+
+@keyframes scroll-gradient {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 </style>
