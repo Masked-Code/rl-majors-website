@@ -24,7 +24,7 @@ const user = useSupabaseUser()
 <style scoped>
 .gradient-text {
   display: inline-block;
-  background: linear-gradient(90deg, #c45fff, #6750db, #6750db, #6750db, #c45fff);
+  background: linear-gradient(100deg, #6750db, #c45fff, #6750db);
   background-size: 200% 100%;
   background-clip: text;
   -webkit-background-clip: text;
