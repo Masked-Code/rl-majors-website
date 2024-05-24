@@ -12,5 +12,6 @@ export default defineNuxtConfig({
       cookieRedirect: false,
     }
   },
+  extends: ['@nuxt/ui-pro'],
   modules: ["@nuxt/ui", '@nuxtjs/color-mode', 'nuxt-icon', '@nuxtjs/supabase']
 })

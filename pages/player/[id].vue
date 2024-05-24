@@ -50,7 +50,7 @@
             <div>
               <div class="flex flex-row">
                 <div class="m-4">
-                  <UCard class="core-card">
+                  <UCard>
                     <div class="flex flex-row">
                       <div class="text-3xl m-4 mr-6 place-self-center"><b>Core</b></div>
                       <div class="flex flex-row">
@@ -89,7 +89,7 @@
                   </UCard>
                 </div>
                 <div class="m-4">
-                  <UCard class="core-card">
+                  <UCard>
                     <div class="flex flex-row">
                       <div class="flex flex-row text-3xl m-4 mr-6 place-self-center"><b>Tags</b></div>
                       <div v-if="currentSelectedPlayer.tags == null">
@@ -157,13 +157,13 @@ onMounted(async () => {
         allPlayerData.push(playerData) 
       }
       if (playerDataError) {
-        console.error("playerDataError: ", playerDataError);
+        console.error("playerDataError");
       }
     }
     currentSelectedPlayerData.value = allPlayerData[allPlayerData.length-1]
   }
   if (playerError) {
-    console.error("playerError: ", playerError);
+    console.error("playerError");
   }
   let seasonEntries = []
   player.forEach((eachPlayerSeason) => seasonEntries.push(
@@ -203,7 +203,4 @@ const tabs = [{
 </script>
 
 <style>
-.core-card {
-  background: radial-gradient(circle at left, #FFBF00 8%, transparent 20%);
-}
 </style>
