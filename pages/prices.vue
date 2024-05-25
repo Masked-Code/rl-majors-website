@@ -70,7 +70,8 @@ watch(currentSelectedDivision, async (newVal) => {
 
 const columns = [{
   key: 'discord_username',
-  label: 'Discord Username'
+  label: 'Discord Username',
+  sortable: true
 }, {
   key: 'tracker_link',
   label: 'RL Tracker'
@@ -79,7 +80,8 @@ const columns = [{
   label: 'Team'
 }, {
   key: 'price',
-  label: 'Price'
+  label: 'Price',
+  sortable: true
 }]
 const seasons = [
   [{
