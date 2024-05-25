@@ -28,7 +28,7 @@
              target="_blank"
               class="text-primary font-bold text-lg"
             >
-              Link
+              <UIcon name="i-heroicons-arrow-top-right-on-square" />
             </ULink>
           </template>
           <template #team_uuid-data="{row}">
