@@ -13,7 +13,12 @@
     </UDropdown>
   </div>
       <div class="flex flex-col place-items-center">
-        <UTable :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" :rows="filteredRows || undefined" :columns="columns" class="w-full" >
+        <UTable 
+          :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: 'Loading...' }"
+          :progress="{ color: 'primary', animation: 'carousel' }"
+          :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Player Prices.' }" 
+          :rows="filteredRows || undefined" :columns="columns" class="w-full"
+        >
           <template #discord_username-data="{row}">
             <ULink
               :to="`/player/${row.discord_username}`"

@@ -11,7 +11,12 @@
       </UButton>
     </UDropdown>
       <div class="flex flex-col place-items-center">
-        <UTable :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Team Data.' }" :rows="teamData" :columns="columns" class="w-full" >
+        <UTable
+          :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: 'Loading...' }"
+          :progress="{ color: 'primary', animation: 'carousel' }"
+          :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Team Data.' }" 
+          :rows="teamData" :columns="columns" class="w-full"
+        >
           <template #team_name-header="{column}">
             {{ column.label }}
           </template>
@@ -22,10 +27,13 @@
             {{ column.label }}
           </template>
           <template #owner-data="{row}">
-            {{ row.owner }}
+            {{ row.owner.display_name ? row.owner.display_name : row.owner.discord_username }}
+          </template>
+          <template #captain-header="{column}">
+            {{ column.label }}
           </template>
           <template #captain-data="{row}">
-            {{ row.captain }}
+            {{ row.captain.display_name ? row.captain.display_name : row.captain.discord_username }}
           </template>
           <template #salary-data="{row}">
             {{ row.salary }}
@@ -46,7 +54,7 @@ let teamData = ref();
 onMounted(async () => {
   const { data: initTeamData } = await client
     .from('Teams')
-    .select('*')
+    .select('*, owner(*), captain(*)')
     .eq('season', 1)
     .eq('division', 1)
     teamData.value = initTeamData;
@@ -55,7 +63,7 @@ onMounted(async () => {
 watch(currentSelectedSeason, async (newVal) => {
   const { data: newTeamData } = await client
     .from('Teams')
-    .select('*')
+    .select('*, owner(*), captain(*)')
     .eq('division', currentSelectedDivision.value)
     .eq('season', newVal)
     teamData.value = newTeamData;
@@ -64,7 +72,7 @@ watch(currentSelectedSeason, async (newVal) => {
 watch(currentSelectedDivision, async (newVal) => {
   const { data: newTeamData } = await client
     .from('Teams')
-    .select('*')
+    .select('*, owner(*), captain(*)')
     .eq('division', newVal)
     .eq('season', currentSelectedSeason.value)
     teamData.value = newTeamData;
@@ -72,16 +80,22 @@ watch(currentSelectedDivision, async (newVal) => {
 
 const columns = [{
     key: 'name',
-    label: 'Team Name'
+    label: 'Team Name',
+    sortable: true
   }, {
     key: 'owner',
     label: 'Franchise Owner'
   }, {
+    key: 'captain',
+    label: 'Team Captain'
+  }, {
     key: 'salary',
-    label: 'Remaining Salary'
+    label: 'Remaining Salary',
+    sortable: true
   }, {
     key: 'transactions',
-    label: 'Remaining Transactions'
+    label: 'Remaining Transactions',
+    sortable: true
   }]
 
 const seasons = [
