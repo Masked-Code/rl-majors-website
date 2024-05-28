@@ -41,7 +41,7 @@
       </ULandingCard>
       <ULandingCard class="col-span-6 row-span-2" title="Statistics & Analytics">
         <template #icon>
-          <UIcon name="i-heroicons-circle-stack" class="text-4xl text-primary"></UIcon>
+          <UIcon name="i-heroicons-cube-transparent" class="text-4xl text-primary"></UIcon>
         </template>
         <template #description>
           RLM has built custom automated systems for collecting and authenticating replay data. This collected data allows us to provide a deep analysis to the players and reveal key information that hasn't been possible before.
