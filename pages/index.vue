@@ -20,7 +20,7 @@
           <UIcon name="i-heroicons-users" class="text-4xl text-primary"></UIcon>
         </template>
         <template #description>
-          RL Majors tournaments and leagues consist of division that seperate the player base into skill basaed divisions. They are constructed to enable all players to have fun and fair competition.
+          RL Majors tournaments and leagues consist of divisions that seperate the player base into skill basaed groups. They are constructed to enable as many players as possible to have fun and fair competition.
         </template>
       </ULandingCard>
       <ULandingCard class="col-span-6 row-span-2" title="Franchises">
@@ -28,7 +28,7 @@
           <UIcon name="i-heroicons-building-office" class="text-4xl text-primary"></UIcon>
         </template>
         <template #description>
-          The active players of RLM are able to create their own franchises that span across the divisions. These franchises build and organize the teams that compete in the tournaments and leagues.
+          The active members of RLM are able to create their own franchises that span across the divisions. These franchises build and organize the teams that compete in RLM tournaments and leagues.
         </template>
       </ULandingCard>
       <ULandingCard class="col-span-6 row-span-4" title="Prize Money">
@@ -36,7 +36,7 @@
           <UIcon name="i-heroicons-currency-dollar" class="text-4xl text-primary"></UIcon>
         </template>
         <template #description>
-          Thanks to our community donations, stream activities, and sponsors we are able to provide a monetary prize for most of the divions. Every team that is eligible, in a high enough division and wins their tournament or league will recieve their prize money.
+          Thanks to our community donations, stream activities and sponsors we are able to provide a monetary prize for most of the divions. Every team that is eligible, in a high enough division and wins their tournament or league will recieve a monetary reward.
         </template>
       </ULandingCard>
       <ULandingCard class="col-span-6 row-span-2" title="Statistics & Analytics">
