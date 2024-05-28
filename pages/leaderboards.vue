@@ -15,7 +15,7 @@
           :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: 'Loading...' }"
           :progress="{ color: 'primary', animation: 'carousel' }"
           :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'No Team Data.' }" 
-          :rows="teamData" :columns="columns" class="w-full"
+          :rows="teams" :columns="columns" class="w-full"
         >
           <template #team_name-header="{column}">
             {{ column.label }}
@@ -41,41 +41,102 @@
           <template #transactions-data="{row}">
             {{ row.transactions }}
           </template>
+          <template #wins-data="{row}">
+            {{ row.wins }}
+          </template>
+          <template #losses-data="{row}">
+            {{ row.losses }}
+          </template>
+          <template #goal_difference-data="{row}">
+            {{ row.goal_difference }}
+          </template>
         </UTable>
       </div>
   </UCard>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 const client = useSupabaseClient()
 let currentSelectedSeason = ref(1)
 let currentSelectedDivision = ref(1)
-let teamData = ref();
+let teams = ref();
+
 onMounted(async () => {
-  const { data: initTeamData } = await client
-    .from('Teams')
-    .select('*, owner(*), captain(*)')
-    .eq('season', 1)
-    .eq('division', 1)
-    teamData.value = initTeamData;
+    const { data: initteamdata } = await client
+      .from('Team_Stats')
+      .select('season, division, team_uuid(*, owner(*), captain(*)), games_played, wins, losses, goals, goals_against')
+      .eq('season', 1)
+      .eq('division', 1)
+      .order('wins')
+      .order('losses')
+      .order('goals')
+      .order('goals_against', { ascending: false })
+    const transformData = (arr) => {
+      return arr.map(item => {
+        const { team_uuid, goals, goals_against, ...rest } = item;
+        const goal_difference = goals - goals_against;
+        return {
+          ...rest,
+          ...team_uuid,
+          goal_difference
+        };
+      });
+    };
+
+    const transformedData = transformData(initteamdata);
+    teams.value = transformedData;
 })
 
-watch(currentSelectedSeason, async (newVal) => {
-  const { data: newTeamData } = await client
-    .from('Teams')
-    .select('*, owner(*), captain(*)')
-    .eq('division', currentSelectedDivision.value)
-    .eq('season', newVal)
-    teamData.value = newTeamData;
+watch(currentSelectedSeason, async (newVal) => { 
+  const { data: initteamdata } = await client
+      .from('Team_Stats')
+      .select('season, division, team_uuid(*, owner(*), captain(*)), games_played, wins, losses, goals, goals_against')
+      .eq('division', currentSelectedDivision.value)
+      .eq('season', newVal)
+      .order('wins')
+      .order('losses')
+      .order('goals')
+      .order('goals_against', { ascending: false })
+      const transformData = (arr) => {
+      return arr.map(item => {
+        const { team_uuid, goals, goals_against, ...rest } = item;
+        const goal_difference = goals - goals_against;
+        return {
+          ...rest,
+          ...team_uuid,
+          goal_difference
+        };
+      });
+    };
+
+    const transformedData = transformData(initteamdata);
+    teams.value = transformedData;
 })
 
 watch(currentSelectedDivision, async (newVal) => {
-  const { data: newTeamData } = await client
-    .from('Teams')
-    .select('*, owner(*), captain(*)')
-    .eq('division', newVal)
-    .eq('season', currentSelectedSeason.value)
-    teamData.value = newTeamData;
+  const { data: initteamdata } = await client
+      .from('Team_Stats')
+      .select('season, division, team_uuid(*, owner(*), captain(*)), games_played, wins, losses, goals, goals_against')
+      .eq('division', newVal)
+      .eq('season', currentSelectedSeason.value)
+      .order('wins')
+      .order('losses')
+      .order('goals')
+      .order('goals_against', { ascending: false })
+      const transformData = (arr) => {
+      return arr.map(item => {
+        const { team_uuid, goals, goals_against, ...rest } = item;
+        const goal_difference = goals - goals_against;
+        return {
+          ...rest,
+          ...team_uuid,
+          goal_difference
+        };
+      });
+    };
+
+    const transformedData = transformData(initteamdata);
+    teams.value = transformedData;
 })
 
 const columns = [{
@@ -95,6 +156,18 @@ const columns = [{
   }, {
     key: 'transactions',
     label: 'Remaining Transactions',
+    sortable: true
+  }, {
+    key: 'wins',
+    label: 'Wins',
+    sortable: true
+  }, {
+    key: 'losses',
+    label: 'Losses',
+    sortable: true
+  }, {
+    key: 'goal_difference',
+    label: 'Goal Diff',
     sortable: true
   }]
 
